@@ -8,12 +8,10 @@
 	border-left: 1px solid #ddd;
 }
 
-.root main {
-	flex: 1 1 0;
+.root > * {
+	padding: 1em;
 }
 
-.grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
-	grid-gap: 1em;
+.root main {
+	flex: 1 1 0;
 }
