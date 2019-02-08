@@ -1,7 +1,8 @@
 .root {
 	display: flex;
 	width: 100vw;
-	min-height: 100vh;
+	height: 100vh;
+	overflow: hidden;
 }
 
 .root > * + * {
@@ -10,12 +11,36 @@
 
 .root > * {
 	padding: 1em;
+	background: var(--color-bg);
 }
 
 .root main {
 	flex: 1 1 0;
+	padding: 1em 2em;
+	overflow: scroll;
+}
+
+.header {
+	position: relative;
+	width: 3em;
+}
+
+.header a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	padding: 1rem 1rem;
+	font-size: 1.8em;
+	color: var(--color-text);
+	text-align: center;
+}
+
+.header :global(.fa-arrow-left) {
+	margin-top: 0.3em;
 }
 
 main[data-lightbox] {
-	background: #ddd;
+	--color-bg: #fdfdfd;
 }

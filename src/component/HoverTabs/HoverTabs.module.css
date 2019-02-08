@@ -1,0 +1,44 @@
+.tabs {
+	color: var(--color-highlight);
+	margin: 0 auto;
+	display: inline-flex;
+}
+
+.tabs button {
+	all: unset;
+	border: 1px solid var(--color-bg);
+	background: var(--color-secondary);
+	cursor: pointer;
+	padding: 1em 2em;
+	font-weight: 600;
+	min-width: 8em;
+	text-align: center;
+}
+
+.tabs[data-small] button {
+	min-width: 2em;
+}
+
+.tabs button + button {
+	margin-left: -1px;
+}
+
+.tabs button:first-child {
+	padding-left: 2em;
+	border-top-left-radius: 1000em;
+	border-bottom-left-radius: 1000em;
+}
+.tabs button:last-child {
+	padding-right: 2em;
+	border-top-right-radius: 1000em;
+	border-bottom-right-radius: 1000em;
+}
+
+.tabs button[data-active='true'] {
+	background: var(--color-highlight);
+	color: var(--color-bg);
+}
+
+.tabs button[data-hover-active='true'] {
+	text-decoration: underline;
+}

@@ -1,0 +1,15 @@
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: var(--color-text);
+}
+
+.score {
+	opacity: 0.5;
+	margin-left: 1em;
+}
+
+.txt {
+	font-weight: 500;
+}

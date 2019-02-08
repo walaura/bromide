@@ -27,8 +27,8 @@ export default ({ name, files }) => {
 				}}
 			>
 				<header className={styles.header}>
-					<h2 className={styles.head}>{name}</h2>
 					<h3 className={styles.counter}>{files.length}</h3>
+					<h2 className={styles.head}>{name}</h2>
 				</header>
 			</button>
 			{toggleState && (
