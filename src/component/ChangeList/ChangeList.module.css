@@ -1,9 +1,18 @@
 .grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
-	grid-gap: 1em;
+	grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+	grid-gap: 2em;
 }
 
-.head {
+.headerBtn {
+	all: inherit;
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: flex-end;
 	margin-bottom: 1em;
 }

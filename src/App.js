@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import Screenshot from 'component/Screenshot/Screenshot';
+import Compare from 'component/Compare/Compare';
 import ChangeLists from 'component/ChangeList/ChangeLists';
 import './App.css';
 
@@ -32,9 +33,8 @@ const App = () => {
 					</aside>
 				</>
 			) : (
-				<div>
-					image view
-					<Screenshot {...changes[route[1]]} />
+				<main data-lightbox>
+					<Compare {...changes[route[1]]} />
 					<button
 						onClick={() => {
 							setRoute(['home']);
@@ -42,7 +42,7 @@ const App = () => {
 					>
 						back
 					</button>
-				</div>
+				</main>
 			)}
 		</div>
 	);

@@ -17,10 +17,10 @@ const changes = [
 	},
 	{
 		srcset: [
-			'https://i.imgur.com/do79zD3.jpg',
-			'https://i.imgur.com/6INW6uB.jpg',
+			'https://i.imgur.com/8Zq7P8U.jpg',
+			'https://i.imgur.com/j4St81q.jpg',
 		],
-		name: 'desktop no change',
+		name: 'pikachu no change',
 		diff: 0.01,
 	},
 	{

@@ -34,7 +34,7 @@ export default () => {
 	return (
 		<div className={styles.root}>
 			{changesList.map(c => (
-				<ChangeList {...c} />
+				<ChangeList key={c.from + c.name} {...c} />
 			))}
 		</div>
 	);

@@ -15,3 +15,7 @@
 .root main {
 	flex: 1 1 0;
 }
+
+main[data-lightbox] {
+	background: #ddd;
+}
