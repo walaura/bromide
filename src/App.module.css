@@ -1,0 +1,19 @@
+.root {
+	display: flex;
+	width: 100vw;
+	min-height: 100vh;
+}
+
+.root > * + * {
+	border-left: 1px solid #ddd;
+}
+
+.root main {
+	flex: 1 1 0;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
+	grid-gap: 1em;
+}
