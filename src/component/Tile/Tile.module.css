@@ -11,12 +11,12 @@
 	border-radius: 0.5em;
 	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.2);
 	background-size: cover;
-	background-position: 0 0;
+	background-position: top center;
 	transition: 0.3s ease-in-out;
 	will-change: transform;
 	margin-bottom: 1em;
 }
 
-.root:hover .img {
+.root:hover:not(:active) .img {
 	transform: scale(1.05);
 }

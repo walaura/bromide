@@ -4,7 +4,7 @@
 	display: inline-flex;
 }
 
-.tabs button {
+.button {
 	all: unset;
 	border: 1px solid var(--color-bg);
 	background: var(--color-secondary);
@@ -15,30 +15,37 @@
 	text-align: center;
 }
 
-.tabs[data-small] button {
+.tabs[data-small] .button {
 	min-width: 2em;
 }
 
-.tabs button + button {
+.button + .button {
 	margin-left: -1px;
 }
 
-.tabs button:first-child {
+.button:first-child {
 	padding-left: 2em;
 	border-top-left-radius: 1000em;
 	border-bottom-left-radius: 1000em;
 }
-.tabs button:last-child {
+.button:last-child {
 	padding-right: 2em;
 	border-top-right-radius: 1000em;
 	border-bottom-right-radius: 1000em;
 }
 
-.tabs button[data-active='true'] {
+.button[data-active='true'] {
 	background: var(--color-highlight);
 	color: var(--color-bg);
 }
 
-.tabs button[data-hover-active='true'] {
+.contents {
+	transition: 0.3s ease-in-out;
+}
+
+.button:hover {
 	text-decoration: underline;
+}
+.button:hover:not(:active) .contents {
+	transform: scale(50) rotate(4deg);
 }

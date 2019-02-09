@@ -31,14 +31,17 @@
 	left: 0;
 	bottom: 0;
 	right: 0;
-	padding: 1rem 1rem;
+	padding: 1.2rem 1rem;
 	font-size: 1.8em;
 	color: var(--color-text);
 	text-align: center;
 }
 
-.header :global(.fa-arrow-left) {
-	margin-top: 0.3em;
+.header a svg {
+	transition: transform 0.3s ease-in-out;
+}
+.header a:hover:not(:active) svg {
+	transform: scale(1.05);
 }
 
 main[data-lightbox] {

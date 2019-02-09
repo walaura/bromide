@@ -2,7 +2,7 @@ import React from 'react';
 import Compare from 'component/Compare/Compare';
 import ChangeLists from 'component/ChangeList/ChangeLists';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCodeBranch, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faClone, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './App.module.css';
 
@@ -16,15 +16,15 @@ const App = () => {
 	return (
 		<div className={styles.root}>
 			<header className={styles.header}>
-				<a href="#/home">
-					{route[0] === 'home' ? (
-						<FontAwesomeIcon icon={faCodeBranch} />
+				<a href="#/">
+					{!route[0] ? (
+						<FontAwesomeIcon icon={faClone} />
 					) : (
 						<FontAwesomeIcon icon={faArrowLeft} />
 					)}
 				</a>
 			</header>
-			{route[0] === 'home' ? (
+			{!route[0] ? (
 				<>
 					<main>
 						<ChangeLists list={list} />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Screenshot from 'component/Screenshot/Screenshot';
+import Tile from 'component/Tile/Tile';
 
 import styles from './ChangeList.module.css';
 
@@ -34,7 +34,7 @@ export default ({ name, files }) => {
 			{toggleState && (
 				<section className={styles.grid}>
 					{files.map(({ srcset, index, name, diff }) => (
-						<Screenshot
+						<Tile
 							key={index}
 							href={['#', 'image', index].join('/')}
 							{...{ srcset, name, diff }}
