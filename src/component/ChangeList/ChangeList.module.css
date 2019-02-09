@@ -7,7 +7,9 @@
 .headerBtn {
 	all: inherit;
 	width: 100%;
+	cursor: pointer;
 	margin: 0;
+	transition: 0.3s ease-in-out;
 }
 
 .header {
@@ -15,11 +17,33 @@
 	width: 100%;
 	justify-content: stretch;
 	align-items: center;
+}
+
+.headerBtn[data-open='true'] .header {
 	margin-bottom: 2em;
+}
+
+.headerBtn[data-open='false'] .chevron {
+	transform: rotate(180deg);
+}
+
+.chevron {
+	border-radius: 100%;
+	padding: 1em 1.2em;
+	width: 1em;
+	transition: 0.3s ease-in-out;
+	opacity: 0.5;
+}
+
+.headerBtn:hover .chevron {
+	background: var(--color-secondary);
+	color: var(--color-highlight);
+	opacity: 1;
 }
 
 .head {
 	width: 100%;
+	font-weight: 900;
 }
 
 .counter {
@@ -28,7 +52,24 @@
 	font-weight: 900;
 	margin-right: 1em;
 	display: block;
-	padding: 1em 2em;
 	border-radius: 1000em;
 	flex: 0 0 auto;
+	width: 10em;
+	position: relative;
+	overflow: hidden;
+	margin: 0.75em 2em 0.75em 0;
+	padding: 0.25em;
+}
+
+.counterPerc {
+	position: absolute;
+	color: var(--color-bg);
+	top: 0;
+	left: 0;
+	bottom: 0;
+	border-radius: 1000em;
+}
+
+.length {
+	margin-right: 0.5em;
 }

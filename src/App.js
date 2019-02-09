@@ -25,17 +25,9 @@ const App = () => {
 				</a>
 			</header>
 			{!route[0] ? (
-				<>
-					<main>
-						<ChangeLists list={list} />
-					</main>
-					<aside>
-						<section>
-							<div className="bar">asd</div>
-							90% of this looks the same
-						</section>
-					</aside>
-				</>
+				<main>
+					<ChangeLists list={list} />
+				</main>
 			) : (
 				<main
 					tabIndex="0"

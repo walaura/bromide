@@ -1,34 +1,49 @@
-import React, { useState } from 'react';
-import Tile from 'component/Tile/Tile';
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { hsl, withLuminance } from 'helper/color';
 
+import Tile from 'component/Tile/Tile';
+import useToggle from 'hook/useToggle';
 import styles from './ChangeList.module.css';
 
-const useToggle = (defaultState = true) => {
-	const [state, setState] = useState(defaultState);
-	const toggle = (to = null) => {
-		if (to === null) {
-			console.log(12);
-			setState(s => !s);
-		} else {
-			setState(to);
-		}
-	};
-	return [state, toggle];
-};
-
-export default ({ name, files }) => {
+export default ({ singular, plural, files, total, color }) => {
 	const [toggleState, toggle] = useToggle();
 	return (
 		<div>
 			<button
 				className={styles.headerBtn}
+				data-open={toggleState}
 				onClick={() => {
 					toggle();
 				}}
 			>
 				<header className={styles.header}>
-					<h3 className={styles.counter}>{files.length}</h3>
-					<h2 className={styles.head}>{name}</h2>
+					<h3
+						className={styles.counter}
+						style={{ background: hsl(withLuminance(color, 1.1)) }}
+					>
+						<div
+							className={styles.counterPerc}
+							style={{
+								background: hsl(withLuminance(color, 0.8)),
+								width: `${(files.length / total) * 100}%`,
+							}}
+						/>
+					</h3>
+					<h2
+						className={styles.head}
+						style={{ color: hsl(withLuminance(color, 0.25)) }}
+					>
+						{[
+							files.length,
+							files.length === 1 ? 'thing' : 'things',
+							files.length === 1 ? singular : plural,
+						].join(' ')}
+					</h2>
+					<div className={styles.chevron}>
+						<FontAwesomeIcon icon={faChevronDown} />
+					</div>
 				</header>
 			</button>
 			{toggleState && (

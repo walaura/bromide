@@ -37,15 +37,18 @@ const getChangeList = () => {
 	const thresholds = [
 		{
 			from: 0.8,
-			name: 'Things that have changed',
+			singular: 'has changed',
+			plural: 'have changed',
 		},
 		{
 			from: 0.2,
-			name: 'Things that may have changed',
+			singular: 'may have changed',
+			plural: 'may have changed',
 		},
 		{
 			from: 0,
-			name: 'Things that look the same',
+			singular: 'looks the same',
+			plural: 'look the same',
 		},
 	];
 
