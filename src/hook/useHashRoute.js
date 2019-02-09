@@ -11,6 +11,7 @@ const parseHashURL = url =>
 const useHashRoute = () => {
 	const [route, setRoute] = useState(parseHashURL(location));
 	const hashChangeHandler = ev => {
+		ev.preventDefault();
 		setRoute(parseHashURL(ev.newURL));
 	};
 
