@@ -7,7 +7,7 @@ import Tile from 'component/Tile/Tile';
 import useToggle from 'hook/useToggle';
 import styles from './ChangeList.module.css';
 
-export default ({ singular, plural, files, total, color }) => {
+const ChangeList = ({ singular, plural, files, total, color }) => {
 	const [toggleState, toggle] = useToggle();
 	return (
 		<div>
@@ -60,3 +60,7 @@ export default ({ singular, plural, files, total, color }) => {
 		</div>
 	);
 };
+ChangeList.defaultProps = {
+	color: [0, 0, 0],
+};
+export default ChangeList;

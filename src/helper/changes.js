@@ -1,56 +1,25 @@
-const changes = [
-	{
-		srcset: [
-			'https://i.imgur.com/do79zD3.jpg',
-			'https://i.imgur.com/6INW6uB.jpg',
-		],
-		name: 'desktop high',
-		diff: 0.862,
-	},
-	{
-		srcset: [
-			'https://i.imgur.com/do79zD3.jpg',
-			'https://i.imgur.com/6INW6uB.jpg',
-		],
-		name: 'desktop high',
-		diff: 0.9,
-	},
-	{
-		srcset: [
-			'https://i.imgur.com/8Zq7P8U.jpg',
-			'https://i.imgur.com/j4St81q.jpg',
-		],
-		name: 'pikachu no change',
-		diff: 0.01,
-	},
-	{
-		srcset: [
-			'https://i.imgur.com/do79zD3.jpg',
-			'https://i.imgur.com/6INW6uB.jpg',
-		],
-		name: 'desktop mid',
-		diff: 0.34,
-	},
-];
+/*eslint-disable no-undef*/
+const getChanges = async () => [...WEBPACKGLOBALS.changes];
+const getThresholds = async () => {
+	const threshies = [...WEBPACKGLOBALS.thresholds];
+	if (threshies.length <= 0) {
+		return [
+			{
+				from: 0,
+				singular: 'total',
+				plural: 'total',
+			},
+		];
+	}
+	return threshies;
+};
+/*eslint-enable*/
 
-const getChangeList = () => {
-	const thresholds = [
-		{
-			from: 0.8,
-			singular: 'has changed',
-			plural: 'have changed',
-		},
-		{
-			from: 0.2,
-			singular: 'may have changed',
-			plural: 'may have changed',
-		},
-		{
-			from: 0,
-			singular: 'looks the same',
-			plural: 'look the same',
-		},
-	];
+const getChangeList = async () => {
+	const [changes, thresholds] = await Promise.all([
+		getChanges(),
+		getThresholds(),
+	]);
 
 	return thresholds.map(({ from, ...t }, index) => ({
 		...t,
@@ -64,7 +33,8 @@ const getChangeList = () => {
 	}));
 };
 
-const getNavigation = (list, currentImage) => {
+const getNavigation = async currentImage => {
+	const list = await getChangeList();
 	const flat = list
 		.map(({ files }, threshold) =>
 			files.map(file => ({
@@ -83,6 +53,9 @@ const getNavigation = (list, currentImage) => {
 	return { prev, next };
 };
 
-const getChange = id => changes[id];
+const getChange = async id => {
+	const changes = await getChanges();
+	return changes[id];
+};
 
 export { getChangeList, getChange, getNavigation };

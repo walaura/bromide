@@ -1,15 +1,12 @@
 import React from 'react';
-import Compare from 'component/Compare/Compare';
-import ChangeLists from 'component/ChangeList/ChangeLists';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClone, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+import Image from 'route/Image';
+import Lists from 'route/Lists';
 import styles from './App.module.css';
 
 import useHashRoute from 'hook/useHashRoute';
-import { getChangeList, getNavigation, getChange } from 'helper/changes';
-
-const list = getChangeList();
 
 const App = () => {
 	const [route, setRoute] = useHashRoute();
@@ -26,23 +23,10 @@ const App = () => {
 			</header>
 			{!route[0] ? (
 				<main>
-					<ChangeLists list={list} />
+					<Lists />
 				</main>
 			) : (
-				<main
-					tabIndex="0"
-					data-lightbox
-					onKeyUp={({ key }) => {
-						const { prev, next } = getNavigation(list, route[1]);
-						if (key === 'ArrowLeft') {
-							setRoute(['image', prev]);
-						} else if (key === 'ArrowRight') {
-							setRoute(['image', next]);
-						}
-					}}
-				>
-					<Compare {...getChange(route[1])} />
-				</main>
+				<Image id={route[1]} {...{ setRoute }} />
 			)}
 		</div>
 	);

@@ -1,0 +1,17 @@
+[
+	{
+		"from": 0.8,
+		"singular": "has changed",
+		"plural": "have changed"
+	},
+	{
+		"from": 0.2,
+		"singular": "may have changed",
+		"plural": "may have changed"
+	},
+	{
+		"from": 0,
+		"singular": "looks the same",
+		"plural": "look the same"
+	}
+]
