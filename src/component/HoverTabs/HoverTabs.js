@@ -14,7 +14,7 @@ const HoverTabs = ({ tabs, activeTab, onHover, onClick, className, small }) => {
 			{tabs.map((tab, index) => (
 				<button
 					className={styles.button}
-					data-active={index === activeTab}
+					data-active={index === Number(activeTab)}
 					key={index}
 					onMouseEnter={() => {
 						onHover(index);

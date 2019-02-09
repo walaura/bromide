@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
+import usePersistentState from 'hook/usePersistentState';
 import HoverTabs from 'component/HoverTabs/HoverTabs';
 import ImageView from 'component/ImageView/ImageView';
 import Title from 'component/Title/Title';
@@ -10,9 +11,9 @@ import { views } from 'helper/views';
 import styles from './Compare.module.css';
 
 export default ({ srcset, name, diff, ...props }) => {
-	const [selectedView, setSelectedView] = useState(0);
+	const [selectedView, setSelectedView] = usePersistentState('view', 0);
 	const [hoverView, setHoverView] = useState(selectedView);
-	const [large, setLarge] = useState(false);
+	const [large, setLarge] = usePersistentState('large', false);
 
 	return (
 		<div className={styles.root} {...props}>
