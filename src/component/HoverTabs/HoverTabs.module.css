@@ -39,13 +39,6 @@
 	color: var(--color-bg);
 }
 
-.contents {
-	transition: 0.3s ease-in-out;
-}
-
 .button:hover {
 	text-decoration: underline;
-}
-.button:hover:not(:active) .contents {
-	transform: scale(50) rotate(4deg);
 }

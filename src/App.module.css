@@ -20,6 +20,10 @@
 	overflow: scroll;
 }
 
+.root main:focus {
+	outline: none;
+}
+
 .header {
 	position: relative;
 	width: 3em;
@@ -42,8 +46,4 @@
 }
 .header a:hover:not(:active) svg {
 	transform: scale(1.05);
-}
-
-main[data-lightbox] {
-	--color-bg: #fdfdfd;
 }

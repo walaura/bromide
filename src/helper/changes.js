@@ -44,7 +44,6 @@ const getNavigation = async currentImage => {
 		)
 		.reduce((prev, cur) => [...prev, ...cur], []);
 	const index = flat.findIndex(({ index }) => index === Number(currentImage));
-
 	const [prev, next] = [
 		index <= 0 ? flat.length - 1 : index - 1,
 		index >= flat.length - 1 ? 0 : index + 1,

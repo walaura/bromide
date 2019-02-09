@@ -1,28 +1,38 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import usePromise from 'react-use-promise';
 
 import Compare from 'component/Compare/Compare';
 import { getNavigation, getChange } from 'helper/changes';
 
 const Image = ({ id, setRoute }) => {
-	const [image, error, state] = usePromise(useMemo(() => getChange(id), [id]));
+	const [image] = usePromise(useMemo(() => getChange(id), [id]));
+	const [cursor] = usePromise(useMemo(() => getNavigation(id), [id]));
+
+	const ref = useRef(null);
+
+	useEffect(() => {
+		if (ref.current) {
+			ref.current.focus();
+		}
+	}, [id, image]);
+
 	return image ? (
 		<main
 			tabIndex="0"
-			data-lightbox
+			ref={ref}
 			onKeyUp={({ key }) => {
-				const { prev, next } = getNavigation(image);
+				if (!cursor) return;
 				if (key === 'ArrowLeft') {
-					setRoute(['image', prev]);
+					setRoute(['image', cursor.prev]);
 				} else if (key === 'ArrowRight') {
-					setRoute(['image', next]);
+					setRoute(['image', cursor.next]);
 				}
 			}}
 		>
 			<Compare {...image} />
 		</main>
 	) : (
-		<main>{state === 'resolved' ? 'Not found' : ''}</main>
+		<main>{'Not found'}</main>
 	);
 };
 

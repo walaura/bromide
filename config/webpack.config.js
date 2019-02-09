@@ -41,7 +41,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
-module.exports = function(webpackEnv) {
+module.exports = function(webpackEnv, { changes, thresholds, out }) {
 	const isEnvDevelopment = webpackEnv === 'development';
 	const isEnvProduction = webpackEnv === 'production';
 
@@ -58,9 +58,7 @@ module.exports = function(webpackEnv) {
 	// `publicUrl` is just like `publicPath`, but we will provide it to our app
 	// as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 	// Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
-	const publicUrl = isEnvProduction
-		? publicPath.slice(0, -1)
-		: isEnvDevelopment && '';
+	const publicUrl = '';
 	// Get environment variables to inject into our app.
 	const env = getClientEnvironment(publicUrl);
 
@@ -136,7 +134,7 @@ module.exports = function(webpackEnv) {
 		].filter(Boolean),
 		output: {
 			// The build folder.
-			path: isEnvProduction ? paths.appBuild : undefined,
+			path: isEnvProduction ? out : undefined,
 			// Add /* filename */ comments to generated require()s in the output.
 			pathinfo: isEnvDevelopment,
 			// There will be one main bundle, and one file per asynchronous chunk.
@@ -324,7 +322,7 @@ module.exports = function(webpackEnv) {
 								customize: require.resolve(
 									'babel-preset-react-app/webpack-overrides'
 								),
-
+								presets: ['react-app'],
 								plugins: [
 									[
 										require.resolve('babel-plugin-named-asset-import'),
@@ -338,12 +336,6 @@ module.exports = function(webpackEnv) {
 										},
 									],
 								],
-								// This is a feature of `babel-loader` for webpack (not Babel itself).
-								// It enables caching results in ./node_modules/.cache/babel-loader/
-								// directory for faster rebuilds.
-								cacheDirectory: true,
-								cacheCompression: isEnvProduction,
-								compact: isEnvProduction,
 							},
 						},
 						// Process any JS outside of the app with Babel.
@@ -508,20 +500,8 @@ module.exports = function(webpackEnv) {
 			new webpack.DefinePlugin(env.stringified),
 			// Add the changes
 			new webpack.DefinePlugin({
-				'WEBPACKGLOBALS.changes': JSON.stringify(
-					JSON.parse(
-						fs.readFileSync(
-							path.resolve(__dirname, '..', 'test', 'changes.json')
-						)
-					)
-				),
-				'WEBPACKGLOBALS.thresholds': JSON.stringify(
-					JSON.parse(
-						fs.readFileSync(
-							path.resolve(__dirname, '..', 'test', 'thresholds.json')
-						)
-					)
-				),
+				'WEBPACKGLOBALS.changes': changes,
+				'WEBPACKGLOBALS.thresholds': thresholds,
 			}),
 			// This is necessary to emit hot updates (currently CSS only):
 			isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),

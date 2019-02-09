@@ -23,7 +23,7 @@ const HoverTabs = ({ tabs, activeTab, onHover, onClick, className, small }) => {
 						onClick(index);
 					}}
 				>
-					<span className={styles.contents}>{tab}</span>
+					{tab}
 				</button>
 			))}
 		</div>
