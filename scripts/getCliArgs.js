@@ -20,7 +20,7 @@ const optionDefinitions = [
 		name: 'thresholds',
 		alias: 't',
 		type: String,
-		defaultValue: resolve(__dirname, '..', 'test', 'thresholds.json'),
+		defaultValue: resolve(__dirname, '..', 'sample', 'thresholds.json'),
 		description: 'Path to your thresholds.json (optional)',
 	},
 ];

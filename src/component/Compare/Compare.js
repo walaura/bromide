@@ -44,7 +44,7 @@ export default ({ srcset, name, diff, ...props }) => {
 					/>
 				</div>
 			</div>
-			<ImageView srcset={srcset} view={views[hoverView].key} large={large} />
+			<ImageView {...srcset} view={views[hoverView].key} large={large} />
 		</div>
 	);
 };

@@ -1,0 +1,34 @@
+[
+	{
+		"srcset": {
+			"original": "https://i.imgur.com/do79zD3.jpg",
+			"current": "https://i.imgur.com/6INW6uB.jpg"
+		},
+		"name": "desktop high",
+		"diff": 0.862
+	},
+	{
+		"srcset": {
+			"original": "https://i.imgur.com/j0aYNKq.png",
+			"current": "https://i.imgur.com/ZXmcL9U.png"
+		},
+		"name": "imgur high",
+		"diff": 0.9
+	},
+	{
+		"srcset": {
+			"current": "https://i.imgur.com/8Zq7P8U.jpg",
+			"original": "https://i.imgur.com/j4St81q.jpg"
+		},
+		"name": "pikachu no change",
+		"diff": 0.01
+	},
+	{
+		"srcset": {
+			"original": "https://i.imgur.com/do79zD3.jpg",
+			"current": "https://i.imgur.com/6INW6uB.jpg"
+		},
+		"name": "desktop mid",
+		"diff": 0.34
+	}
+]

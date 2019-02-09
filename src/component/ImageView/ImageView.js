@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import styles from './ImageView.module.css';
 
-export default ({ srcset, large, view }) => {
+export default ({ current, original, large, view }) => {
 	const [minHeight, setMinHeight] = useState(0);
 
 	const imageRefs = [useRef(null), useRef(null)];
@@ -27,10 +27,10 @@ export default ({ srcset, large, view }) => {
 			<img
 				ref={imageRefs[0]}
 				className={styles.original}
-				src={srcset[0]}
+				src={original}
 				alt=""
 			/>
-			<img ref={imageRefs[1]} className={styles.new} src={srcset[1]} alt="" />
+			<img ref={imageRefs[1]} className={styles.current} src={current} alt="" />
 		</div>
 	);
 };

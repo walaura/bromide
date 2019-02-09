@@ -4,17 +4,17 @@ import Title from 'component/Title/Title';
 
 import styles from './Tile.module.css';
 
-const Tile = ({ srcset, name, diff, ...props }) => {
-	const [thumb, setThumb] = useState(srcset[1]);
+const Tile = ({ original, current, name, diff, ...props }) => {
+	const [thumb, setThumb] = useState(current);
 	return (
 		<a
 			{...props}
 			className={styles.root}
 			onMouseEnter={() => {
-				setThumb(srcset[0]);
+				setThumb(original);
 			}}
 			onMouseLeave={() => {
-				setThumb(srcset[1]);
+				setThumb(current);
 			}}
 		>
 			<div

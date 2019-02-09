@@ -31,7 +31,7 @@
 	z-index: 5;
 }
 
-.new {
+.current {
 	transform-origin: right center;
 	z-index: 6;
 	opacity: 0;
@@ -41,12 +41,12 @@
 	opacity: 1;
 }
 
-.imgs[data-view='new'] .new {
+.imgs[data-view='new'] .current {
 	opacity: 1;
 }
 
 .imgs[data-view='sbs'] .original,
-.imgs[data-view='sbs'] .new {
+.imgs[data-view='sbs'] .current {
 	opacity: 1;
 	transform: scale(0.49);
 }
@@ -58,7 +58,7 @@
 	transform: scale(0.999);
 	transform-origin: center;
 }
-.imgs[data-view='diff'] .new {
+.imgs[data-view='diff'] .current {
 	opacity: 1;
 	z-index: 4;
 	transform: scale(0.999);

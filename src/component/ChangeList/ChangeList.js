@@ -52,7 +52,8 @@ const ChangeList = ({ singular, plural, files, total, color }) => {
 						<Tile
 							key={index}
 							href={['#', 'image', index].join('/')}
-							{...{ srcset, name, diff }}
+							{...{ name, diff }}
+							{...srcset}
 						/>
 					))}
 				</section>
