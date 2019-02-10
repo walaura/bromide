@@ -2,19 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import styles from './ImageView.module.css';
 
-export default ({ change, original, large, view }) => {
+export default ({ change, original, diff, large, view }) => {
 	const [minHeight, setMinHeight] = useState(0);
 
-	const imageRefs = [useRef(null), useRef(null)];
+	const imageRefs = [useRef(null), useRef(null), useRef(null)];
 	const containerRef = useRef(null);
 
 	useEffect(() => {
 		setMinHeight(
 			Math.max(
-				...imageRefs.map(r => r.current.getBoundingClientRect().height)
+				...imageRefs.map(r =>
+					r.current ? r.current.getBoundingClientRect().height : 0
+				)
 			) - 10
 		);
-	});
+	}, [large, view, change, original, diff]);
 
 	return (
 		<div
@@ -33,6 +35,7 @@ export default ({ change, original, large, view }) => {
 				alt=""
 			/>
 			<img ref={imageRefs[1]} className={styles.change} src={change} alt="" />
+			<img ref={imageRefs[2]} className={styles.diff} src={diff} alt="" />
 		</div>
 	);
 };

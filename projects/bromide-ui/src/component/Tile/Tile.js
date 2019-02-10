@@ -6,7 +6,6 @@ import styles from './Tile.module.css';
 
 const Tile = ({ original, change, name, diff, ...props }) => {
 	const [thumb, setThumb] = useState(change);
-	console.log({ original, change, name, diff, props });
 	return (
 		<a
 			{...props}
