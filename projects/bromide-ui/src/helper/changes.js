@@ -4,7 +4,8 @@ const getChanges = async () => {
 	return changes.map(({ srcset, ...change }) => ({
 		...change,
 		srcset: {
-			current: '.imagecache/' + btoa(srcset.current) + '.png',
+			change: '.imagecache/' + btoa(srcset.change) + '.png',
+			diff: '.imagecache/' + btoa(srcset.diff) + '.png',
 			original: '.imagecache/' + btoa(srcset.original) + '.png',
 		},
 	}));

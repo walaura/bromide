@@ -15,11 +15,6 @@ export default ({ change, original, large, view }) => {
 			) - 10
 		);
 	});
-	useEffect(() => {
-		if (containerRef.current) {
-			console.log(containerRef.current.getBoundingClientRect());
-		}
-	});
 
 	return (
 		<div

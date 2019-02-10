@@ -61,7 +61,7 @@ const downloadImages = async (json, pathToJson) => {
 	for (let { srcset, name } of JSON.parse(json)) {
 		console.log(`downloading ${name} to ${imageCachePath}`);
 		await Promise.all(
-			['original', 'change', 'diff'].map(image => {
+			['original', 'change', 'diff'].map(image =>
 				srcset[image].includes('://')
 					? download(srcset[image]).then(data => {
 							writeFileSync(
@@ -72,8 +72,8 @@ const downloadImages = async (json, pathToJson) => {
 					: copyFileSync(
 							resolve(dirname(pathToJson), srcset[image]),
 							resolve(imageCachePath, filename(srcset[image]))
-					  );
-			})
+					  )
+			)
 		);
 		console.log(`...done`);
 	}
