@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useRef } from 'react';
 import usePromise from 'react-use-promise';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSadCry, faDog } from '@fortawesome/free-solid-svg-icons';
+import useRemoteState from 'hook/useRemoteState';
 
 import Compare from 'component/Compare/Compare';
 import FullScreenIcon from '../component/FullScreenIcon/FullScreenIcon';
@@ -10,18 +11,23 @@ import { getNavigation, getChange } from 'helper/changes';
 import styles from './Image.module.css';
 
 const Image = ({ id, setRoute }) => {
-	//eslint-disable-next-line no-unused-vars
-	const [image, error, state] = usePromise(useMemo(() => getChange(id), [id]));
+	const { image, state } = useRemoteState(
+		useMemo(
+			() =>
+				getChange(id).then(image => {
+					return { image };
+				}),
+			[id]
+		)
+	);
 	const [cursor] = usePromise(useMemo(() => getNavigation(id), [id]));
-
 	const ref = useRef(null);
-
 	useEffect(() => {
 		if (ref.current) {
 			ref.current.focus();
 		}
 	}, [id, image]);
-
+	console.log(id, state, image);
 	return (
 		<main>
 			{image ? (

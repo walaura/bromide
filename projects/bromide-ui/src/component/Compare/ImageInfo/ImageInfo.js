@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
-import usePromise from 'react-use-promise';
 
 import { getThresholds, getThreshold } from 'helper/changes';
 import { hsl, withLuminance, getColorForThreshold } from 'helper/color';
 import Title from 'component/Title/Title';
+import useRemoteState from 'hook/useRemoteState';
 
 import styles from './ImageInfo.module.css';
 
 export default ({ name, difference, id }) => {
-	const [threshold] = usePromise(
+	const threshold = useRemoteState(
 		useMemo(async () => {
 			const threshold = await getThreshold(id);
 			const thresholds = await getThresholds();
@@ -16,24 +16,26 @@ export default ({ name, difference, id }) => {
 				...thresholds[threshold],
 				color: await getColorForThreshold(threshold),
 			};
-		}, [id])
+		}, [id]),
+		{
+			whenLoading: {
+				color: [0, 0, 0],
+			},
+		}
 	);
-
-	let color = (threshold || {}).color;
-	if (!color) color = [0, 0, 0];
 
 	return (
 		<div className={styles.root}>
 			<span
-				style={{ background: hsl(withLuminance(color, 0.8)) }}
+				style={{ background: hsl(withLuminance(threshold.color, 0.8)) }}
 				className={styles.dot}
 			/>
 			<div>
 				<Title className={styles.title} {...{ name, difference }} />
-				{threshold && (
+				{threshold.singular && (
 					<span
 						className={styles.infoThreshold}
-						style={{ color: hsl(withLuminance(color, 0.25)) }}
+						style={{ color: hsl(withLuminance(threshold.color, 0.25)) }}
 					>
 						{threshold.singular}
 					</span>
