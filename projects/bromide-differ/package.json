@@ -1,6 +1,6 @@
 {
 	"name": "bromide-differ",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "basic differ that exports a bromide diff",
 	"main": "index.js",
 	"repository": {

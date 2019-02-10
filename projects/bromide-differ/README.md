@@ -1,4 +1,5 @@
-#bromide-differ
+# bromide-differ
+
 Generates a diff in the format `bromide` expects.
 
 ```
