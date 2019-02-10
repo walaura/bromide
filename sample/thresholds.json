@@ -2,12 +2,12 @@
 	"colors": [[138, 87, 78], [216, 87, 78], [331, 88, 80]],
 	"thresholds": [
 		{
-			"from": 0.8,
+			"from": 0.025,
 			"singular": "has changed",
 			"plural": "have changed"
 		},
 		{
-			"from": 0.2,
+			"from": 0.00025,
 			"singular": "may have changed",
 			"plural": "may have changed"
 		},

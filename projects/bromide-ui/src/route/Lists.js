@@ -16,20 +16,23 @@ export default () => {
 	const [colors] = usePromise(useMemo(() => getColors(), []));
 	return list && colors ? (
 		<div className={styles.root}>
-			{list.map((c, index) => (
-				<ChangeList
-					color={
-						(colors.length > 0 && list.length) > 1
-							? mix(colors, index / (list.length - 1))
-							: undefined
-					}
-					total={list
-						.map(({ files }) => files.length)
-						.reduce((prev, cur) => prev + cur, 0)}
-					key={c.from + c.singular + c.plural}
-					{...c}
-				/>
-			))}
+			{list.map(
+				(c, index) =>
+					c.files.length > 0 && (
+						<ChangeList
+							color={
+								(colors.length > 0 && list.length) > 1
+									? mix(colors, index / (list.length - 1))
+									: undefined
+							}
+							total={list
+								.map(({ files }) => files.length)
+								.reduce((prev, cur) => prev + cur, 0)}
+							key={c.from + c.singular + c.plural}
+							{...c}
+						/>
+					)
+			)}
 		</div>
 	) : (
 		<FullScreenIcon
