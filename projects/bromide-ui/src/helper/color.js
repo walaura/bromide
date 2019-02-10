@@ -1,3 +1,5 @@
+import { getChangeList, getColors } from 'helper/changes';
+
 const mixNumber = (b, a, perc) => Math.floor(b + (a - b) * perc);
 const mixMap = (a, b, perc) =>
 	a.map((_, index) => mixNumber(_, b[index], perc));
@@ -10,4 +12,11 @@ const mix = (colors, perc) => {
 const hsl = ([hue, sat, lum]) => `hsl(${hue}, ${sat}%, ${lum}%)`;
 const withLuminance = ([hue, sat, lum], factor) => [hue, sat, lum * factor];
 
-export { mix, hsl, withLuminance };
+const getColorForThreshold = async index => {
+	const list = await getChangeList();
+	const colors = await getColors();
+	return colors.length > 0 && list.length > 1
+		? mix(colors, index / (list.length - 1))
+		: undefined;
+};
+export { mix, hsl, withLuminance, getColorForThreshold };

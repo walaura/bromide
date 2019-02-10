@@ -46,9 +46,8 @@ const getChangeList = async () => {
 	}));
 };
 
-const getNavigation = async currentImage => {
-	const list = await getChangeList();
-	const flat = list
+const flatten = list =>
+	list
 		.map(({ files }, threshold) =>
 			files.map(file => ({
 				...file,
@@ -56,6 +55,9 @@ const getNavigation = async currentImage => {
 			}))
 		)
 		.reduce((prev, cur) => [...prev, ...cur], []);
+
+const getNavigation = async currentImage => {
+	const flat = flatten(await getChangeList());
 	const index = flat.findIndex(({ index }) => index === Number(currentImage));
 	const [prev, next] = [
 		index <= 0 ? flat.length - 1 : index - 1,
@@ -65,9 +67,22 @@ const getNavigation = async currentImage => {
 	return { prev, next };
 };
 
+const getThreshold = async currentImage => {
+	const flat = flatten(await getChangeList());
+	const index = flat.find(({ index }) => index === Number(currentImage));
+	return index.threshold;
+};
+
 const getChange = async id => {
 	const changes = await getChanges();
 	return changes[id];
 };
 
-export { getChangeList, getColors, getChange, getThresholds, getNavigation };
+export {
+	getChangeList,
+	getColors,
+	getThreshold,
+	getChange,
+	getThresholds,
+	getNavigation,
+};

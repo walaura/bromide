@@ -38,7 +38,7 @@ const Image = ({ id, setRoute }) => {
 						}
 					}}
 				>
-					<Compare {...image} />
+					<Compare {...image} id={id} />
 				</div>
 			) : state !== 'resolved' ? (
 				<FullScreenIcon

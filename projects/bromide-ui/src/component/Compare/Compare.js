@@ -6,21 +6,33 @@ import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
 import usePersistentState from 'hook/usePersistentState';
 import { usePersistentToggle } from 'hook/useToggle';
-import { getThresholds } from 'helper/changes';
+import { getThresholds, getThreshold } from 'helper/changes';
+import { getColorForThreshold } from 'helper/color';
+import { views } from 'helper/views';
+
 import HoverTabs from 'component/HoverTabs/HoverTabs';
 import ImageView from 'component/ImageView/ImageView';
 import Title from 'component/Title/Title';
 import Toggle from 'component/Toggle/Toggle';
-import { views } from 'helper/views';
 
 import styles from './Compare.module.css';
+import ImageInfo from './ImageInfo/ImageInfo';
 
-export default ({ srcset, name, difference, ...props }) => {
+export default ({ srcset, name, difference, id, ...props }) => {
 	const [selectedView, setSelectedView] = usePersistentState('view', 0, v =>
 		Number(v)
 	);
 	const [hoverView, setHoverView] = useState(selectedView);
-	const [thresholds] = usePromise(useMemo(() => getThresholds(), []));
+	const [threshold] = usePromise(
+		useMemo(async () => {
+			const threshold = await getThreshold(id);
+			const thresholds = await getThresholds();
+			return {
+				...thresholds[threshold],
+				color: await getColorForThreshold(threshold),
+			};
+		}, [id])
+	);
 	const [large, setLarge] = usePersistentToggle('lg', false);
 
 	useEffect(() => {
@@ -32,12 +44,10 @@ export default ({ srcset, name, difference, ...props }) => {
 	return (
 		<div className={styles.root} {...props}>
 			<div className={styles.header}>
-				<Title className={styles.title} {...{ name, difference }} />
+				<ImageInfo {...{ name, difference, id }} />
 				<div>
-					{difference === 0 && thresholds ? (
-						<span className={styles.same}>
-							This one {[...thresholds].pop().singular}!
-						</span>
+					{difference === 0 && threshold ? (
+						<span className={styles.same}>This one {threshold.singular}!</span>
 					) : (
 						<HoverTabs
 							tabs={views.map(({ name }) => name)}

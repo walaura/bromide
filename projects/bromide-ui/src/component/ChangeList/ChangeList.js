@@ -1,24 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { hsl, withLuminance } from 'helper/color';
+import { hsl, withLuminance, getColorForThreshold } from 'helper/color';
 import { ViewOptionsContext } from 'context/viewOptions';
+import usePromise from 'react-use-promise';
 
 import Tile from 'component/Tile/Tile';
 import useToggle from 'hook/useToggle';
 import styles from './ChangeList.module.css';
 
-const ChangeList = ({ singular, plural, files, total, color }) => {
+const ChangeList = ({ singular, plural, files, total, index }) => {
 	const [toggleState, toggle] = useToggle();
 	const { hasLargeImages, imageSize } = useContext(ViewOptionsContext);
+
+	let [color] = usePromise(useMemo(() => getColorForThreshold(index), [index]));
+	if (!color) color = [0, 0, 0];
+
 	const size = 4 + 24 * imageSize;
 	const gap = 0.5 + 3 * imageSize;
 
 	return (
-		<div>
+		<div className={styles.root} data-open={toggleState}>
 			<button
 				className={styles.headerBtn}
-				data-open={toggleState}
 				onClick={() => {
 					toggle();
 				}}

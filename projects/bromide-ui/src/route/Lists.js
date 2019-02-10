@@ -15,14 +15,13 @@ import Slider from 'component/Slider/Slider';
 import Toggle from 'component/Toggle/Toggle';
 import FullScreenIcon from 'component/FullScreenIcon/FullScreenIcon';
 
-import { mix } from 'helper/color';
-import { getChangeList, getColors } from 'helper/changes';
+import { getChangeList } from 'helper/changes';
 
 import styles from './Lists.module.css';
 
 export default () => {
 	const [list] = usePromise(useMemo(() => getChangeList(), []));
-	const [colors] = usePromise(useMemo(() => getColors(), []));
+
 	const [hasLargeImages, setHasLargeImages] = usePersistentToggle(
 		'lg-list',
 		defaultState.hasLargeImages
@@ -32,18 +31,14 @@ export default () => {
 		defaultState.imageSize
 	);
 
-	return list && colors ? (
+	return list ? (
 		<ViewOptionsContext.Provider value={{ hasLargeImages, imageSize }}>
-			<main className={styles.root}>
+			<main data-draws-own-padding className={styles.root}>
 				{list.map(
 					(c, index) =>
 						c.files.length > 0 && (
 							<ChangeList
-								color={
-									(colors.length > 0 && list.length) > 1
-										? mix(colors, index / (list.length - 1))
-										: undefined
-								}
+								index={index}
 								total={list
 									.map(({ files }) => files.length)
 									.reduce((prev, cur) => prev + cur, 0)}

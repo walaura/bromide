@@ -1,0 +1,24 @@
+.dot {
+	width: 1em;
+	height: 1em;
+	display: block;
+	border-radius: 100%;
+}
+
+.root {
+	display: flex;
+	align-items: center;
+	text-align: left;
+}
+
+.root .dot {
+	margin-right: 0.75em;
+}
+
+.threshold {
+	margin-top: 0.75em;
+}
+
+.title {
+	justify-content: flex-start;
+}

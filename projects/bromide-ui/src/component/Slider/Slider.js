@@ -9,7 +9,7 @@ export default ({ className, vertical, value, onChange, ...props }) => (
 	<div className={[styles.root, className].join(' ')} data-vertical={vertical}>
 		<div className={styles.inner}>
 			<button
-				class={styles.svg}
+				className={styles.svg}
 				onClick={() => onChange({ target: { value: Number(value) - 0.1 } })}
 			>
 				<FontAwesomeIcon icon={faMinus} />
@@ -24,7 +24,7 @@ export default ({ className, vertical, value, onChange, ...props }) => (
 				value={value}
 			/>
 			<button
-				class={styles.svg}
+				className={styles.svg}
 				onClick={() => onChange({ target: { value: Number(value) + 0.1 } })}
 			>
 				<FontAwesomeIcon icon={faPlus} />
