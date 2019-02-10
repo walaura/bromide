@@ -2,7 +2,7 @@
 
 View and compare differences between two sets of images in a generated static site. It'll group changes by how changed they are and allow you to quickly view each set individually, side by side, or as a diff map between both images.
 
-**This tool is meant to be used as part of a larger visual regression toolchain, so you'll still need something that actually takes screenshots & compares them.** Check out `bromide-differ` if you want a straightforward differ that generates the expected output right out of the box.
+**This tool is meant to be used as part of a larger visual regression toolchain, so you'll still need something that actually takes screenshots & compares them.** <a href="https://github.com/walaura/bromide/tree/master/projects/bromide-differ">Check out `bromide-differ`</a> if you want a straightforward differ that generates the expected output right out of the box.
 
 <img width="1270" alt="screenshot 2019-02-10 at 2 54 34 pm" src="https://user-images.githubusercontent.com/11539094/52535274-17b0ce80-2d44-11e9-980a-80d688ee19d6.png">
 <img width="1270" alt="screenshot 2019-02-10 at 2 54 40 pm" src="https://user-images.githubusercontent.com/11539094/52535276-1bdcec00-2d44-11e9-97a3-ddfae1a2e519.png">
