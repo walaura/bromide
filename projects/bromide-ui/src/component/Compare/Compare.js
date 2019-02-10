@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import usePromise from 'react-use-promise';
+import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
 import usePersistentState from 'hook/usePersistentState';
 import { usePersistentToggle } from 'hook/useToggle';
-import { getThresholds, getThreshold } from 'helper/changes';
-import { getColorForThreshold } from 'helper/color';
 import { views } from 'helper/views';
 
 import HoverTabs from 'component/HoverTabs/HoverTabs';
@@ -22,30 +19,20 @@ export default ({ srcset, name, difference, id, ...props }) => {
 		Number(v)
 	);
 	const [hoverView, setHoverView] = useState(selectedView);
-	const [threshold] = usePromise(
-		useMemo(async () => {
-			const threshold = await getThreshold(id);
-			const thresholds = await getThresholds();
-			return {
-				...thresholds[threshold],
-				color: await getColorForThreshold(threshold),
-			};
-		}, [id])
-	);
 	const [large, setLarge] = usePersistentToggle('lg', false);
 
 	useEffect(() => {
 		if (difference === 0) {
 			setHoverView(3);
 		}
-	}, [difference]);
+	}, [difference, id]);
 
 	return (
 		<div className={styles.root} {...props}>
 			<div className={styles.header}>
 				<ImageInfo {...{ name, difference, id }} />
 				<div>
-					{difference === 0 && threshold ? null : (
+					{difference === 0 ? null : (
 						<HoverTabs
 							tabs={views.map(({ name }) => name)}
 							activeTab={selectedView}

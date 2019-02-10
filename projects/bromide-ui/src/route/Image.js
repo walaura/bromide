@@ -1,5 +1,4 @@
 import React, { useMemo, useEffect, useRef } from 'react';
-import usePromise from 'react-use-promise';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSadCry, faDog } from '@fortawesome/free-solid-svg-icons';
 import useRemoteState from 'hook/useRemoteState';
@@ -11,23 +10,27 @@ import { getNavigation, getChange } from 'helper/changes';
 import styles from './Image.module.css';
 
 const Image = ({ id, setRoute }) => {
-	const { image, state } = useRemoteState(
-		useMemo(
-			() =>
-				getChange(id).then(image => {
-					return { image };
-				}),
-			[id]
-		)
+	const { image, cursor, state } = useRemoteState(
+		useMemo(async () => {
+			const [image, cursor] = await Promise.all([
+				getChange(id),
+				getNavigation(id),
+			]);
+			return { image, cursor };
+		}, [id]),
+		{
+			whenLoading: {
+				cursor: null,
+			},
+		}
 	);
-	const [cursor] = usePromise(useMemo(() => getNavigation(id), [id]));
 	const ref = useRef(null);
 	useEffect(() => {
 		if (ref.current) {
 			ref.current.focus();
 		}
 	}, [id, image]);
-	console.log(id, state, image);
+
 	return (
 		<main>
 			{image ? (

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { hsl, withLuminance, getColorForThreshold } from 'helper/color';
 import { ViewOptionsContext } from 'context/viewOptions';
-import usePromise from 'react-use-promise';
+import useRemoteState from 'hook/useRemoteState';
 
 import Tile from 'component/Tile/Tile';
 import useToggle from 'hook/useToggle';
@@ -13,8 +13,12 @@ const ChangeList = ({ singular, plural, files, total, index }) => {
 	const [toggleState, toggle] = useToggle();
 	const { hasLargeImages, imageSize } = useContext(ViewOptionsContext);
 
-	let [color] = usePromise(useMemo(() => getColorForThreshold(index), [index]));
-	if (!color) color = [0, 0, 0];
+	const { color } = useRemoteState(
+		useMemo(() => getColorForThreshold(index).then(color => ({ color })), [
+			index,
+		]),
+		{ whenLoading: { color: [0, 0, 0] } }
+	);
 
 	const size = 4 + 24 * imageSize;
 	const gap = 0.5 + 3 * imageSize;

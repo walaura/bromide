@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import usePromise from 'react-use-promise';
+import useRemoteState from 'hook/useRemoteState';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faDog,
@@ -20,7 +20,9 @@ import { getChangeList } from 'helper/changes';
 import styles from './Lists.module.css';
 
 export default () => {
-	const [list] = usePromise(useMemo(() => getChangeList(), []));
+	const { list } = useRemoteState(
+		useMemo(() => getChangeList().then(list => ({ list })), [])
+	);
 
 	const [hasLargeImages, setHasLargeImages] = usePersistentToggle(
 		'lg-list',
