@@ -4,7 +4,8 @@ View and compare differences between two sets of images in a generated static si
 
 _This tool is meant to be used as part of a larger visual regression toolchain, so you'll still need something that actually takes screenshots & compares them._
 
-<img width="1477" alt="screenshot 2019-02-10 at 9 00 01 am" src="https://user-images.githubusercontent.com/11539094/52531777-a1e03f00-2d12-11e9-926b-1130a1a4395e.png">
+<img alt="screenshot 2019-02-10 at 9 07 22 am" src="https://user-images.githubusercontent.com/11539094/52532007-0e107200-2d16-11e9-9096-b0b148b68ceb.png">
+<img alt="screenshot 2019-02-10 at 9 07 19 am" src="https://user-images.githubusercontent.com/11539094/52532009-1072cc00-2d16-11e9-8e6c-3f8ef794b2ad.png">
 
 ## how to use
 
