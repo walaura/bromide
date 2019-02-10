@@ -9,7 +9,7 @@ View and compare differences between two sets of images in a generated static si
 
 ## How to use
 
-Let's say you have this json, it's a list of image urls (original, current, diff), a friendly name for each, and the difference between them as a %. It looks like this:
+Let's say you have this json, it's a list of image urls or local paths (original, current, diff), a friendly name for each, and the difference between them as a %. It looks like this:
 
 ```json
 📄 /screenies.json
