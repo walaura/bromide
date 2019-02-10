@@ -1,7 +1,10 @@
 {
-	"name": "visual-regresh-viz-app",
-	"version": "0.1.0",
-	"private": true,
+	"name": "bromide",
+	"version": "0.1.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/walaura/bromide.git"
+	},
 	"dependencies": {
 		"@babel/core": "7.1.6",
 		"@fortawesome/fontawesome-svg-core": "^1.2.14",
@@ -65,7 +68,7 @@
 		"test": "node scripts/test.js"
 	},
 	"bin": {
-		"vrva-make": "./scripts/build.js"
+		"bromide": "./scripts/build.js"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

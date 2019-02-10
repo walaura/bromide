@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# bromide
 
-## Available Scripts
+Static site UI generator to view and compare difference between two sets of images. This tool is meant to be used as part of a larger visual regression toolchain, so you'll still need something that actually takes screenshots & compares them.
 
-In the project directory, you can run:
+It'll group changes by how changed they are and allow you to quickly view original, side by side, or a diff map between all image sets.
 
-### `npm start`
+<img width="1477" alt="screenshot 2019-02-10 at 9 00 01 am" src="https://user-images.githubusercontent.com/11539094/52531777-a1e03f00-2d12-11e9-926b-1130a1a4395e.png">
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## how to use
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Let's say you have this json: It's a list of image urls, a friendly name for each, and the difference between them, it looks like this:
 
-### `npm test`
+```json
+📄 /screenies.json
+[
+	{
+		"srcset": {
+			"original": "https://i.imgur.com/do79zD3.jpg",
+			"current": "https://i.imgur.com/6INW6uB.jpg"
+		},
+		"name": "Landing page",
+		"diff": 0.862
+	},
+	{
+		"srcset": {
+			"original": "https://i.imgur.com/j0aYNKq.png",
+			"current": "https://i.imgur.com/ZXmcL9U.png"
+		},
+		"name": "User profile menu",
+		"diff": 0.9
+  },
+  {...}
+]
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It's a simple pretty unopinionated data shape but the same can't be said of all the possible ways to generate it, that's why `bromide` only concerns itself with letting you see the visual regressions!
 
-### `npm run build`
+In the same directory, you can run
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+$ npx bromide --changes screenies.json --out site
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+…and if it all worked out, you should have a static site in your `/site` folder where you can compare your set of differences neatly! You can see it locally by running `npx serve ./out`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+There's not much use for this locally as you could just, like, open the files, but imagine if you then move that site to an S3 bucket and make it a post deploy hook. Magic!
 
-### `npm run eject`
+## bonus! customizing the change list
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Bromide takes an approach of embracing change. Instead of calling out visual regressions, it _celebrates_ changes, it just puts them in front of you so you can check if they are desired.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Your project might have different requeriments, and that's okay! You can pass a third `--thresholds` parameter with the path to a json of change groups you want the UI to display:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```json
+[
+	{
+		"from": 0.75,
+		"singular": "has visual regressions",
+		"plural": "have visual regressions"
+	},
+	{
+		"from": 0.25,
+		"singular": "may have visual regressions",
+		"plural": "may have visual regressions"
+	},
+	{
+		"from": 0,
+		"singular": "looks the same",
+		"plural": "look the same"
+	}
+]
+```
