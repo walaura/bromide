@@ -4,9 +4,9 @@ const { localStorage } = window;
 
 const prefix = 'vrva-q4hjkv65b98sdf-';
 
-const usePersistentState = (key, defaultState) => {
+const usePersistentState = (key, defaultState, deserializer = a => a) => {
 	const [state, setState] = useState(
-		localStorage[prefix + key] || defaultState
+		deserializer(localStorage[prefix + key]) || defaultState
 	);
 	useEffect(() => {
 		localStorage[prefix + key] = state;

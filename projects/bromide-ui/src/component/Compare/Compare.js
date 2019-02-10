@@ -13,10 +13,11 @@ import styles from './Compare.module.css';
 export default ({ srcset, name, diff, ...props }) => {
 	const [selectedView, setSelectedView] = usePersistentState('view', 0);
 	const [hoverView, setHoverView] = useState(selectedView);
-	let [large, setLarge] = usePersistentState('lg', false);
-	if (typeof large === 'string') {
-		large = large === 'true';
-	}
+	let [large, setLarge] = usePersistentState(
+		'lg',
+		false,
+		val => val === 'true'
+	);
 
 	return (
 		<div className={styles.root} {...props}>
