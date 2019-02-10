@@ -12,7 +12,6 @@ import { views } from 'helper/views';
 
 import HoverTabs from 'component/HoverTabs/HoverTabs';
 import ImageView from 'component/ImageView/ImageView';
-import Title from 'component/Title/Title';
 import Toggle from 'component/Toggle/Toggle';
 
 import styles from './Compare.module.css';
@@ -46,9 +45,7 @@ export default ({ srcset, name, difference, id, ...props }) => {
 			<div className={styles.header}>
 				<ImageInfo {...{ name, difference, id }} />
 				<div>
-					{difference === 0 && threshold ? (
-						<span className={styles.same}>This one {threshold.singular}!</span>
-					) : (
+					{difference === 0 && threshold ? null : (
 						<HoverTabs
 							tabs={views.map(({ name }) => name)}
 							activeTab={selectedView}
