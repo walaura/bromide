@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
-const { resolve, dirname } = require('path');
-const { readFileSync, writeFileSync, copyFileSync } = require('fs');
-const { sync: rimraf } = require('rimraf');
-const download = require('download');
-const { sync: mkdirp } = require('mkdirp');
-const paths = require('../config/paths');
+const { resolve } = require('path');
+const { readFileSync } = require('fs');
 const optionDefinitions = [
 	{
 		name: 'changes',
@@ -55,35 +51,7 @@ const parseJson = file => {
 	}
 };
 
-const filename = image => Buffer.from(image).toString('base64') + '.png';
-
-const downloadImages = async (json, pathToJson) => {
-	const imageCachePath = paths.screenshotsFinal;
-	rimraf(imageCachePath);
-	mkdirp(imageCachePath);
-	for (let { srcset, name } of JSON.parse(json)) {
-		console.log(`downloading ${name} to ${imageCachePath}`);
-		await Promise.all(
-			['original', 'change', 'diff'].map(image =>
-				srcset[image].includes('://')
-					? download(srcset[image]).then(data => {
-							writeFileSync(
-								resolve(imageCachePath, filename(srcset[image])),
-								data
-							);
-					  })
-					: copyFileSync(
-							resolve(dirname(pathToJson), srcset[image]),
-							resolve(imageCachePath, filename(srcset[image]))
-					  )
-			)
-		);
-		console.log(`...done`);
-	}
-	return json;
-};
-
-module.exports = async () => {
+module.exports = () => {
 	const options = commandLineArgs(optionDefinitions);
 	if (!options.changes || !options.out) {
 		const usage = commandLineUsage([
@@ -96,13 +64,10 @@ module.exports = async () => {
 		process.exit(1);
 	} else {
 		return {
+			skipDownloads: options['skip-downloads'],
+			changesPath: getPath(options.changes),
 			out: getPath(options.out),
-			changes: options['skip-downloads']
-				? parseJson(getPath(options.changes))
-				: await downloadImages(
-						parseJson(getPath(options.changes)),
-						getPath(options.changes)
-				  ),
+			changes: parseJson(getPath(options.changes)),
 			thresholds: parseJson(getPath(options.thresholds)),
 		};
 	}

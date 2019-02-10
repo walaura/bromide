@@ -17,7 +17,9 @@ require('../config/env');
 
 const chalk = require('chalk');
 const fs = require('fs-extra');
+const path = require('path');
 const webpack = require('webpack');
+const downloadImages = require('./downloadImages');
 const bfj = require('bfj');
 const args = require('./getCliArgs');
 const configFactory = require('../config/webpack.config');
@@ -42,7 +44,17 @@ const argv = process.argv;
 const writeStatsJson = argv.indexOf('--stats') !== -1;
 
 const main = async () => {
-	const { changes, thresholds, out } = await args();
+	const { changes, thresholds, out, skipDownloads, changesPath } = args();
+
+	const banner = fs
+		.readFileSync(path.resolve(__dirname, '../../..', 'common/banner.txt'))
+		.toString();
+	console.log(chalk.yellow(banner));
+
+	if (!skipDownloads) {
+		await downloadImages(changes, changesPath);
+	}
+
 	// Warn and crash if required files are missing
 	if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 		process.exit(1);
@@ -70,7 +82,7 @@ const main = async () => {
 			return build(previousFileSizes);
 		})
 		.then(
-			({ stats, previousFileSizes, warnings }) => {
+			({ warnings }) => {
 				if (warnings.length) {
 					console.log(chalk.yellow('Compiled with warnings.\n'));
 					console.log(warnings.join('\n\n'));
@@ -85,18 +97,10 @@ const main = async () => {
 							' to the line before.\n'
 					);
 				} else {
-					console.log(chalk.green('Compiled successfully.\n'));
+					console.log(chalk.green('\nCompiled successfully.\n'));
+					console.log(chalk.white('Find your generated bromide at:'));
+					console.log(chalk.underline(chalk.white(out + '\n')));
 				}
-
-				console.log('File sizes after gzip:\n');
-				printFileSizesAfterBuild(
-					stats,
-					previousFileSizes,
-					out,
-					WARN_AFTER_BUNDLE_GZIP_SIZE,
-					WARN_AFTER_CHUNK_GZIP_SIZE
-				);
-				console.log();
 			},
 			err => {
 				console.log(chalk.red('Failed to compile.\n'));
@@ -113,7 +117,7 @@ const main = async () => {
 
 	// Create the production build and print the deployment instructions.
 	function build(previousFileSizes) {
-		console.log('Creating an optimized production build...');
+		console.log(chalk.blue('\nBuilding bromide...'));
 
 		let compiler = webpack(config);
 		return new Promise((resolve, reject) => {
