@@ -1,34 +1,29 @@
 [
 	{
 		"srcset": {
-			"original": "https://i.imgur.com/do79zD3.jpg",
-			"current": "https://i.imgur.com/6INW6uB.jpg"
+			"original": "../projects/differ/out/original/google.png",
+			"change": "../projects/differ/out/change/google.png",
+			"diff": "../projects/differ/out/diff/google.png"
 		},
-		"name": "desktop high",
-		"diff": 0.862
+		"name": "google.png",
+		"diff": 0
 	},
 	{
 		"srcset": {
-			"original": "https://i.imgur.com/j0aYNKq.png",
-			"current": "https://i.imgur.com/ZXmcL9U.png"
+			"original": "../projects/differ/out/original/login.png",
+			"change": "../projects/differ/out/change/login.png",
+			"diff": "../projects/differ/out/diff/login.png"
 		},
-		"name": "imgur high",
-		"diff": 0.9
+		"name": "login.png",
+		"diff": 0.0004704793294270833
 	},
 	{
 		"srcset": {
-			"current": "https://i.imgur.com/8Zq7P8U.jpg",
-			"original": "https://i.imgur.com/j4St81q.jpg"
+			"original": "../projects/differ/out/original/yahoo.png",
+			"change": "../projects/differ/out/change/yahoo.png",
+			"diff": "../projects/differ/out/diff/yahoo.png"
 		},
-		"name": "pikachu no change",
-		"diff": 0.01
-	},
-	{
-		"srcset": {
-			"original": "https://i.imgur.com/do79zD3.jpg",
-			"current": "https://i.imgur.com/6INW6uB.jpg"
-		},
-		"name": "desktop mid",
-		"diff": 0.34
+		"name": "yahoo.png",
+		"diff": 0.03879550456583552
 	}
 ]

@@ -1,0 +1,21 @@
+{
+	"name": "bromide-differ",
+	"version": "1.0.0",
+	"description": "basic differ that exports a bromide diff",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/walaura/bromide.git"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Lau gobleen",
+	"license": "ISC",
+	"dependencies": {
+		"blink-diff": "^1.0.13",
+		"copy-dir": "^0.4.0",
+		"mkdirp": "^0.5.1",
+		"pixelmatch": "^4.0.2"
+	}
+}
