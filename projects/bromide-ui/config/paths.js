@@ -3,6 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
+const os = require('os');
 
 const appDirectory = fs.realpathSync(path.resolve(__dirname, '..'));
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
@@ -76,6 +77,7 @@ module.exports = {
 	proxySetup: resolveApp('src/setupProxy.js'),
 	appNodeModules: resolveApp('node_modules'),
 	servedPath: getServedPath(resolveApp('package.json')),
+	screenshotsFinal: resolveApp('public/screenshots'),
 };
 
 module.exports.moduleFileExtensions = moduleFileExtensions;

@@ -3,8 +3,10 @@ const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const { resolve, dirname } = require('path');
 const { readFileSync, writeFileSync, copyFileSync } = require('fs');
+const { sync: rimraf } = require('rimraf');
 const download = require('download');
-const mkdirp = require('mkdirp');
+const { sync: mkdirp } = require('mkdirp');
+const paths = require('../config/paths');
 const optionDefinitions = [
 	{
 		name: 'changes',
@@ -56,7 +58,8 @@ const parseJson = file => {
 const filename = image => Buffer.from(image).toString('base64') + '.png';
 
 const downloadImages = async (json, pathToJson) => {
-	const imageCachePath = resolve(__dirname, '..', 'public', '.imagecache');
+	const imageCachePath = paths.screenshotsFinal;
+	rimraf(imageCachePath);
 	mkdirp(imageCachePath);
 	for (let { srcset, name } of JSON.parse(json)) {
 		console.log(`downloading ${name} to ${imageCachePath}`);

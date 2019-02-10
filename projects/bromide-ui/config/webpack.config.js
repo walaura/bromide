@@ -322,7 +322,7 @@ module.exports = function(webpackEnv, { changes, thresholds, out }) {
 								customize: require.resolve(
 									'babel-preset-react-app/webpack-overrides'
 								),
-								presets: ['react-app'],
+								presets: [require.resolve('babel-preset-react-app')],
 								plugins: [
 									[
 										require.resolve('babel-plugin-named-asset-import'),
