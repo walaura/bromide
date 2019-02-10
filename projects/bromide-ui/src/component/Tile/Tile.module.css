@@ -3,6 +3,7 @@
 	border: 0;
 	cursor: pointer;
 	display: block;
+	position: relative;
 }
 
 .img {
@@ -19,4 +20,27 @@
 
 .root:hover:not(:active) .img {
 	transform: scale(1.05);
+}
+
+.root[data-is-tiny='true'] .title {
+	position: absolute;
+	width: 16em;
+	box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.2);
+	background: var(--color-text);
+	color: var(--color-bg);
+	border-radius: 9999em;
+	z-index: 10;
+	padding: 1em 2em;
+	left: -2em;
+	top: -3.5em;
+	opacity: 0;
+	will-change: opacity, transform;
+	transform: translateY(1em) scale(0.9);
+}
+
+.root[data-is-tiny='true']:hover .title,
+.root[data-is-tiny='true']:focus .title {
+	transform: translateY(0) scale(1);
+	opacity: 1;
+	transition: 0.3s ease-in-out;
 }

@@ -4,7 +4,7 @@
 	position: relative;
 	min-height: 100%;
 }
-.imgs[data-is-large='false'] {
+.imgs[data-is-large='false']:not([data-view='sbs']) {
 	border-radius: 1.6em;
 	background: var(--color-text);
 	overflow: hidden;

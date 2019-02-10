@@ -8,5 +8,11 @@
 
 .aside {
 	display: flex;
-	align-items: flex-end;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.aside > * {
+	margin-top: 1em;
 }

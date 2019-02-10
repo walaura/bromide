@@ -6,7 +6,7 @@
 }
 
 .root > * + * {
-	border-left: 1px solid #ddd;
+	border-left: 1px solid #eee;
 }
 
 .root > * {
@@ -27,6 +27,8 @@
 .header {
 	position: relative;
 	width: 3em;
+	border-right: 1px solid #ddd;
+	margin-right: -1px;
 }
 
 .header a {

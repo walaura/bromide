@@ -4,7 +4,7 @@ import Title from 'component/Title/Title';
 
 import styles from './Tile.module.css';
 
-const Tile = ({ srcset, name, difference, hasLargeImages, ...props }) => {
+const Tile = ({ srcset, name, tiny, difference, hasLargeImages, ...props }) => {
 	const defaultThumb = difference === 0 ? srcset.change : srcset.diff;
 	const [thumb, setThumb] = useState(defaultThumb);
 	const [aspectRatio, setAspectRatio] = useState(1);
@@ -24,6 +24,7 @@ const Tile = ({ srcset, name, difference, hasLargeImages, ...props }) => {
 		<a
 			{...props}
 			className={styles.root}
+			data-is-tiny={tiny}
 			onMouseEnter={() => {
 				setThumb(srcset.change);
 			}}
@@ -31,7 +32,7 @@ const Tile = ({ srcset, name, difference, hasLargeImages, ...props }) => {
 				setThumb(defaultThumb);
 			}}
 		>
-			<Title {...{ name, difference }} />
+			<Title className={styles.title} {...{ name, difference }} />
 			<div
 				className={styles.img}
 				style={{

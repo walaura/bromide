@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
 import usePersistentState from 'hook/usePersistentState';
+import { usePersistentToggle } from 'hook/useToggle';
 import { getThresholds } from 'helper/changes';
 import HoverTabs from 'component/HoverTabs/HoverTabs';
 import ImageView from 'component/ImageView/ImageView';
@@ -20,11 +21,7 @@ export default ({ srcset, name, difference, ...props }) => {
 	);
 	const [hoverView, setHoverView] = useState(selectedView);
 	const [thresholds] = usePromise(useMemo(() => getThresholds(), []));
-	const [large, setLarge] = usePersistentState(
-		'lg',
-		false,
-		val => val === 'true'
-	);
+	const [large, setLarge] = usePersistentToggle('lg', false);
 
 	useEffect(() => {
 		if (difference === 0) {

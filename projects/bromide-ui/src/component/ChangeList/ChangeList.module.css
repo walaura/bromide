@@ -1,7 +1,5 @@
 .grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
-	grid-gap: 3em;
 }
 
 .headerBtn {
@@ -17,10 +15,6 @@
 	width: 100%;
 	justify-content: stretch;
 	align-items: center;
-}
-
-.headerBtn[data-open='true'] .header {
-	margin-bottom: 2em;
 }
 
 .headerBtn[data-open='false'] .chevron {

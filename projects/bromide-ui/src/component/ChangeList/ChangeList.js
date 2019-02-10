@@ -10,7 +10,10 @@ import styles from './ChangeList.module.css';
 
 const ChangeList = ({ singular, plural, files, total, color }) => {
 	const [toggleState, toggle] = useToggle();
-	const { hasLargeImages } = useContext(ViewOptionsContext);
+	const { hasLargeImages, imageSize } = useContext(ViewOptionsContext);
+	const size = 4 + 24 * imageSize;
+	const gap = 0.5 + 3 * imageSize;
+
 	return (
 		<div>
 			<button
@@ -49,10 +52,18 @@ const ChangeList = ({ singular, plural, files, total, color }) => {
 				</header>
 			</button>
 			{toggleState && (
-				<section className={styles.grid}>
+				<section
+					className={styles.grid}
+					style={{
+						marginTop: `${gap / 3}em`,
+						gridTemplateColumns: `repeat(auto-fill, minmax(${size}em, 1fr))`,
+						gridGap: `${gap}em`,
+					}}
+				>
 					{files.map(({ srcset, index, name, difference }) => (
 						<Tile
 							key={index}
+							tiny={size < 10}
 							href={['#', 'image', index].join('/')}
 							{...{ name, difference, srcset, hasLargeImages }}
 						/>

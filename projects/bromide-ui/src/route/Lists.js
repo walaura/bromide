@@ -7,9 +7,11 @@ import {
 	faRulerVertical,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { ViewOptionsContext } from 'context/viewOptions';
-import useToggle from 'hook/useToggle';
+import { ViewOptionsContext, defaultState } from 'context/viewOptions';
+import { usePersistentToggle } from 'hook/useToggle';
+import usePersistentState from 'hook/usePersistentState';
 import ChangeList from 'component/ChangeList/ChangeList';
+import Slider from 'component/Slider/Slider';
 import Toggle from 'component/Toggle/Toggle';
 import FullScreenIcon from 'component/FullScreenIcon/FullScreenIcon';
 
@@ -21,10 +23,17 @@ import styles from './Lists.module.css';
 export default () => {
 	const [list] = usePromise(useMemo(() => getChangeList(), []));
 	const [colors] = usePromise(useMemo(() => getColors(), []));
-	const [hasLargeImages, setHasLargeImages] = useToggle();
+	const [hasLargeImages, setHasLargeImages] = usePersistentToggle(
+		'lg-list',
+		defaultState.hasLargeImages
+	);
+	const [imageSize, setImageSize] = usePersistentState(
+		'img-size',
+		defaultState.imageSize
+	);
 
 	return list && colors ? (
-		<ViewOptionsContext.Provider value={{ hasLargeImages }}>
+		<ViewOptionsContext.Provider value={{ hasLargeImages, imageSize }}>
 			<main className={styles.root}>
 				{list.map(
 					(c, index) =>
@@ -45,6 +54,15 @@ export default () => {
 				)}
 			</main>
 			<aside className={styles.aside}>
+				<div>
+					<Slider
+						vertical
+						onChange={ev => {
+							setImageSize(ev.target.value);
+						}}
+						value={imageSize}
+					/>
+				</div>
 				<Toggle
 					vertical={true}
 					state={hasLargeImages}

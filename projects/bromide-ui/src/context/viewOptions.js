@@ -1,14 +1,8 @@
 import { createContext } from 'react';
 
-export const themes = {
-	light: {
-		foreground: '#000000',
-		background: '#eeeeee',
-	},
-	dark: {
-		foreground: '#ffffff',
-		background: '#222222',
-	},
+export const defaultState = {
+	hasLargeImages: true,
+	imageSize: 0.75,
 };
 
-export const ViewOptionsContext = createContext(themes.dark);
+export const ViewOptionsContext = createContext(defaultState);

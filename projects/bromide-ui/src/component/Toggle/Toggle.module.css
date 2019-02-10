@@ -24,7 +24,7 @@
 }
 .root[data-vertical='true'] > div {
 	margin-top: -1px;
-	padding: 1.25em 0.25em;
+	padding: 1.25em 0.125em;
 }
 
 .root > div[data-selected='true'] {
