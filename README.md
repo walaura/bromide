@@ -1,6 +1,6 @@
 # bromide
 
-View and compare differences between two sets of images in a generated static site. It'll group changes by how changed they are and allow you to quickly view each set invidudually, side by side, or as a diff map between both.
+View and compare differences between two sets of images in a generated static site. It'll group changes by how changed they are and allow you to quickly view each set individually, side by side, or as a diff map between both images.
 
 _This tool is meant to be used as part of a larger visual regression toolchain, so you'll still need something that actually takes screenshots & compares them._
 
