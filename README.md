@@ -13,21 +13,21 @@ Let's say you have this json, it's a list of image urls, a friendly name for eac
 ```json
 📄 /screenies.json
 [
-	{
-		"srcset": {
-			"original": "https://i.imgur.com/do79zD3.jpg",
-			"current": "https://i.imgur.com/6INW6uB.jpg"
-		},
-		"name": "Landing page",
-		"diff": 0.862
-	},
-	{
-		"srcset": {
-			"original": "https://i.imgur.com/j0aYNKq.png",
-			"current": "https://i.imgur.com/ZXmcL9U.png"
-		},
-		"name": "User profile menu",
-		"diff": 0.9
+  {
+    "srcset": {
+      "original": "https://i.imgur.com/do79zD3.jpg",
+      "current": "https://i.imgur.com/6INW6uB.jpg"
+    },
+    "name": "Landing page",
+    "diff": 0.862
+  },
+  {
+    "srcset": {
+      "original": "https://i.imgur.com/j0aYNKq.png",
+      "current": "https://i.imgur.com/ZXmcL9U.png"
+    },
+    "name": "User profile menu",
+    "diff": 0.9
   }
 ]
 ```
@@ -53,21 +53,21 @@ Your project might have different requeriments, and that's okay! You can pass a 
 ```json
 📄 /thresholds.json
 [
-	{
-		"from": 0.75,
-		"singular": "has visual regressions",
-		"plural": "have visual regressions"
-	},
-	{
-		"from": 0.25,
-		"singular": "may have visual regressions",
-		"plural": "may have visual regressions"
-	},
-	{
-		"from": 0,
-		"singular": "looks the same",
-		"plural": "look the same"
-	}
+  {
+    "from": 0.75,
+    "singular": "has visual regressions",
+    "plural": "have visual regressions"
+  },
+  {
+    "from": 0.25,
+    "singular": "may have visual regressions",
+    "plural": "may have visual regressions"
+  },
+  {
+    "from": 0,
+    "singular": "looks the same",
+    "plural": "look the same"
+  }
 ]
 ```
 
