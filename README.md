@@ -28,8 +28,7 @@ Let's say you have this json, it's a list of image urls, a friendly name for eac
 		},
 		"name": "User profile menu",
 		"diff": 0.9
-  },
-  {/*add as many as u want*/}
+  }
 ]
 ```
 
