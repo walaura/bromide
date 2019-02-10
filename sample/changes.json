@@ -6,7 +6,7 @@
 			"diff": "../projects/bromide-differ/out/diff/google.png"
 		},
 		"name": "google.png",
-		"diff": 0
+		"difference": 0
 	},
 	{
 		"srcset": {
@@ -15,7 +15,7 @@
 			"diff": "../projects/bromide-differ/out/diff/login.png"
 		},
 		"name": "login.png",
-		"diff": 0.0004704793294270833
+		"difference": 0.0004704793294270833
 	},
 	{
 		"srcset": {
@@ -24,7 +24,7 @@
 			"diff": "../projects/bromide-differ/out/diff/yahoo.png"
 		},
 		"name": "yahoo.png",
-		"diff": 0.03879550456583552
+		"difference": 0.03879550456583552
 	},
 	{
 		"srcset": {
@@ -33,7 +33,7 @@
 			"diff": "../projects/bromide-differ/out/diff/google.png"
 		},
 		"name": "google.png",
-		"diff": 1
+		"difference": 1
 	},
 	{
 		"srcset": {
@@ -42,7 +42,7 @@
 			"diff": "../projects/bromide-differ/out/diff/login.png"
 		},
 		"name": "login.png",
-		"diff": 0.10004704793294270833
+		"difference": 0.10004704793294270833
 	},
 	{
 		"srcset": {
@@ -51,6 +51,6 @@
 			"diff": "../projects/bromide-differ/out/diff/yahoo.png"
 		},
 		"name": "yahoo.png",
-		"diff": 0.103879550456583552
+		"difference": 0.103879550456583552
 	}
 ]

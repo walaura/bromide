@@ -38,8 +38,9 @@ const getChangeList = async () => {
 		files: changes
 			.map((change, index) => ({ ...change, index }))
 			.filter(
-				({ diff }) =>
-					diff >= from && diff <= (index === 0 ? 1 : thresholds[index - 1].from)
+				({ difference }) =>
+					difference >= from &&
+					difference <= (index === 0 ? 1 : thresholds[index - 1].from)
 			),
 	}));
 };

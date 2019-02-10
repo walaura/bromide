@@ -48,12 +48,11 @@ const ChangeList = ({ singular, plural, files, total, color }) => {
 			</button>
 			{toggleState && (
 				<section className={styles.grid}>
-					{files.map(({ srcset, index, name, diff }) => (
+					{files.map(({ srcset, index, name, difference }) => (
 						<Tile
 							key={index}
 							href={['#', 'image', index].join('/')}
-							{...{ name, diff }}
-							{...srcset}
+							{...{ name, difference, srcset }}
 						/>
 					))}
 				</section>

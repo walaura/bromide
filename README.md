@@ -17,18 +17,20 @@ Let's say you have this json, it's a list of image urls, a friendly name for eac
   {
     "srcset": {
       "original": "https://i.imgur.com/do79zD3.jpg",
-      "current": "https://i.imgur.com/6INW6uB.jpg"
+      "current": "https://i.imgur.com/6INW6uB.jpg",
+      "diff": "https://i.imgur.com/6INW6uB.jpg"
     },
     "name": "Landing page",
-    "diff": 0.862
+    "difference": 0.862
   },
   {
     "srcset": {
       "original": "https://i.imgur.com/j0aYNKq.png",
-      "current": "https://i.imgur.com/ZXmcL9U.png"
+      "current": "https://i.imgur.com/ZXmcL9U.png",
+      "diff": "https://i.imgur.com/6INW6uB.jpg"
     },
     "name": "User profile menu",
-    "diff": 0.9
+    "difference": 0.9
   }
 ]
 ```

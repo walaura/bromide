@@ -10,7 +10,7 @@ import Title from 'component/Title/Title';
 import { views } from 'helper/views';
 import styles from './Compare.module.css';
 
-export default ({ srcset, name, diff, ...props }) => {
+export default ({ srcset, name, difference, ...props }) => {
 	const [selectedView, setSelectedView] = usePersistentState('view', 0, v =>
 		Number(v)
 	);
@@ -22,19 +22,19 @@ export default ({ srcset, name, diff, ...props }) => {
 	);
 
 	useEffect(() => {
-		if (diff === 0) {
+		if (difference === 0) {
 			setHoverView(3);
 		}
-	}, [diff]);
+	}, [difference]);
 
 	console.log(hoverView);
 
 	return (
 		<div className={styles.root} {...props}>
 			<div className={styles.header}>
-				<Title className={styles.title} {...{ name, diff }} />
+				<Title className={styles.title} {...{ name, difference }} />
 				<div>
-					{diff === 0 ? (
+					{difference === 0 ? (
 						<span>This one looks the same!</span>
 					) : (
 						<HoverTabs

@@ -43,7 +43,7 @@ const main = async () => {
 							diff: resolve(diff, file),
 						},
 						name: file,
-						diff: result.differences / result.dimension,
+						difference: result.differences / result.dimension,
 					});
 					yay();
 				}
