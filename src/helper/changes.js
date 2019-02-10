@@ -1,7 +1,8 @@
 /*eslint-disable no-undef*/
-const getChanges = async () => [...WEBPACKGLOBALS.changes];
+const getChanges = async () => [...(WEBPACKGLOBALS.changes || [])];
+const getColors = async () => [...(WEBPACKGLOBALS.thresholds.colors || [])];
 const getThresholds = async () => {
-	const threshies = [...WEBPACKGLOBALS.thresholds];
+	const threshies = [...(WEBPACKGLOBALS.thresholds.thresholds || [])];
 	if (threshies.length <= 0) {
 		return [
 			{
@@ -57,4 +58,4 @@ const getChange = async id => {
 	return changes[id];
 };
 
-export { getChangeList, getChange, getNavigation };
+export { getChangeList, getColors, getChange, getNavigation };

@@ -7,6 +7,7 @@ import Compare from 'component/Compare/Compare';
 import FullScreenIcon from '../component/FullScreenIcon/FullScreenIcon';
 
 import { getNavigation, getChange } from 'helper/changes';
+import styles from './Image.module.css';
 
 const Image = ({ id, setRoute }) => {
 	//eslint-disable-next-line no-unused-vars
@@ -22,7 +23,8 @@ const Image = ({ id, setRoute }) => {
 	}, [id, image]);
 
 	return image ? (
-		<main
+		<div
+			className={styles.root}
 			tabIndex="0"
 			ref={ref}
 			onKeyUp={({ key }) => {
@@ -35,20 +37,16 @@ const Image = ({ id, setRoute }) => {
 			}}
 		>
 			<Compare {...image} />
-		</main>
+		</div>
 	) : state !== 'resolved' ? (
-		<main>
-			<FullScreenIcon
-				appearance={'loading'}
-				icon={<FontAwesomeIcon icon={faDog} />}
-			/>
-		</main>
+		<FullScreenIcon
+			appearance={'loading'}
+			icon={<FontAwesomeIcon icon={faDog} />}
+		/>
 	) : (
-		<main>
-			<FullScreenIcon icon={<FontAwesomeIcon icon={faSadCry} />}>
-				Not found
-			</FullScreenIcon>
-		</main>
+		<FullScreenIcon icon={<FontAwesomeIcon icon={faSadCry} />}>
+			Not found
+		</FullScreenIcon>
 	);
 };
 

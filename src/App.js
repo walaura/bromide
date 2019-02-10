@@ -21,13 +21,9 @@ const App = () => {
 					)}
 				</a>
 			</header>
-			{!route[0] ? (
-				<main>
-					<Lists />
-				</main>
-			) : (
-				<Image id={route[1]} {...{ setRoute }} />
-			)}
+			<main>
+				{!route[0] ? <Lists /> : <Image id={route[1]} {...{ setRoute }} />}
+			</main>
 		</div>
 	);
 };

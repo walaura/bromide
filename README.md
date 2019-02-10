@@ -53,24 +53,33 @@ Your project might have different requeriments, and that's okay! You can pass a 
 
 ```json
 📄 /thresholds.json
-[
-  {
-    "from": 0.75,
-    "singular": "has visual regressions",
-    "plural": "have visual regressions"
-  },
-  {
-    "from": 0.25,
-    "singular": "may have visual regressions",
-    "plural": "may have visual regressions"
-  },
-  {
-    "from": 0,
-    "singular": "looks the same",
-    "plural": "look the same"
-  }
-]
+{
+  "colors": [
+    [138, 87, 78],
+    [216, 87, 78],
+    [331, 88, 80]
+  ],
+  "thresholds": [
+    {
+      "from": 0.75,
+      "singular": "has visual regressions",
+      "plural": "have visual regressions"
+    },
+    {
+      "from": 0.25,
+      "singular": "may have visual regressions",
+      "plural": "may have visual regressions"
+    },
+    {
+      "from": 0,
+      "singular": "looks the same",
+      "plural": "look the same"
+    }
+  ]
+}
 ```
+
+The colors are an extra bit of eye candy for the threshold titles, don't worry about having the same number of colours as you have thresholds! The app will make a gradient blend for each step. If you hate joy you can not pass any colours in and everything will be grey.
 
 ```
 $ npx bromide --changes screenies.json --thresholds thresholds.json --out site
