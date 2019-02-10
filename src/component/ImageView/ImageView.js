@@ -6,6 +6,7 @@ export default ({ current, original, large, view }) => {
 	const [minHeight, setMinHeight] = useState(0);
 
 	const imageRefs = [useRef(null), useRef(null)];
+	const containerRef = useRef(null);
 
 	useEffect(() => {
 		setMinHeight(
@@ -14,12 +15,18 @@ export default ({ current, original, large, view }) => {
 			) - 10
 		);
 	});
+	useEffect(() => {
+		if (containerRef.current) {
+			console.log(containerRef.current.getBoundingClientRect());
+		}
+	});
 
 	return (
 		<div
 			className={styles.imgs}
 			data-view={view}
 			data-is-large={large}
+			ref={containerRef}
 			style={{
 				height: (large && minHeight) > 0 ? minHeight : null,
 			}}

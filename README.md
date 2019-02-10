@@ -41,7 +41,7 @@ In the same directory, you can run:
 $ npx bromide --changes screenies.json --out site
 ```
 
-...and if it all worked out, you should have a static site in your `/site` folder where you can compare your set of differences neatly! You can see it locally by running `npx serve ./out`.
+...and if it all worked out, you should have a static site in your `/site` folder where you can compare your set of differences neatly! You can see it locally by running `npx serve ./out`. The original images get downloaded alongside the site to make it fully self contained.
 
 There's not much use for this locally as you could just, like, open the files, but imagine if you then move that site to an S3 bucket and make it a post deploy hook. Magic!
 

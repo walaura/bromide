@@ -1,7 +1,7 @@
 .root {
 	display: flex;
 	width: 100vw;
-	min-height: 100vh;
+	height: 100vh;
 	overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
 .root main {
 	flex: 1 1 0;
 	padding: 1em 2em;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .root main:focus {

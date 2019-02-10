@@ -2,7 +2,7 @@
 	margin: auto;
 	width: 100%;
 	position: relative;
-	min-height: 90%;
+	min-height: 100%;
 }
 .imgs[data-is-large='false'] {
 	border-radius: 1.6em;

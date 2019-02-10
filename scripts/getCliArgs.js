@@ -2,7 +2,9 @@
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const { resolve } = require('path');
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
+const download = require('download');
+const mkdirp = require('mkdirp');
 const optionDefinitions = [
 	{
 		name: 'changes',
@@ -15,6 +17,11 @@ const optionDefinitions = [
 		alias: 'o',
 		type: String,
 		description: 'Output folder',
+	},
+	{
+		name: 'skip-downloads',
+		type: Boolean,
+		description: 'Skip downloading images locally (useful in dev)',
 	},
 	{
 		name: 'thresholds',
@@ -39,7 +46,30 @@ const parseJson = file => {
 	}
 };
 
-module.exports = () => {
+const downloadImages = async json => {
+	const imageCachePath = resolve(__dirname, '..', 'public', '.imagecache');
+	mkdirp(imageCachePath);
+	for (let { srcset, name } of JSON.parse(json)) {
+		console.log(`downloading ${name} to ${imageCachePath}`);
+		await Promise.all(
+			['original', 'current'].map(image =>
+				download(srcset[image]).then(data => {
+					writeFileSync(
+						resolve(
+							imageCachePath,
+							Buffer.from(srcset[image]).toString('base64') + '.png'
+						),
+						data
+					);
+				})
+			)
+		);
+		console.log(`...done`);
+	}
+	return json;
+};
+
+module.exports = async () => {
 	const options = commandLineArgs(optionDefinitions);
 	if (!options.changes || !options.out) {
 		const usage = commandLineUsage([
@@ -53,7 +83,9 @@ module.exports = () => {
 	} else {
 		return {
 			out: getPath(options.out),
-			changes: parseJson(getPath(options.changes)),
+			changes: options['skip-downloads']
+				? parseJson(getPath(options.changes))
+				: await downloadImages(parseJson(getPath(options.changes))),
 			thresholds: parseJson(getPath(options.thresholds)),
 		};
 	}

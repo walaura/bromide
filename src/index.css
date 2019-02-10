@@ -16,6 +16,7 @@ body {
 	font-size: 0.8em;
 	font-family: 'Roboto Mono', source-code-pro, Menlo, Monaco, Consolas,
 		'Courier New', monospace;
+	overflow: hidden;
 }
 
 * {

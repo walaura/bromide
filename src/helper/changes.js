@@ -1,5 +1,14 @@
 /*eslint-disable no-undef*/
-const getChanges = async () => [...(WEBPACKGLOBALS.changes || [])];
+const getChanges = async () => {
+	const changes = [...(WEBPACKGLOBALS.changes || [])];
+	return changes.map(({ srcset, ...change }) => ({
+		...change,
+		srcset: {
+			current: '.imagecache/' + btoa(srcset.current) + '.png',
+			original: '.imagecache/' + btoa(srcset.original) + '.png',
+		},
+	}));
+};
 const getColors = async () => [...(WEBPACKGLOBALS.thresholds.colors || [])];
 const getThresholds = async () => {
 	const threshies = [...(WEBPACKGLOBALS.thresholds.thresholds || [])];
