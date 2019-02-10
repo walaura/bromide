@@ -4,8 +4,8 @@ import Title from 'component/Title/Title';
 
 import styles from './Tile.module.css';
 
-const Tile = ({ original, current, name, diff, ...props }) => {
-	const [thumb, setThumb] = useState(current);
+const Tile = ({ original, change, name, diff, ...props }) => {
+	const [thumb, setThumb] = useState(change);
 	return (
 		<a
 			{...props}
@@ -14,7 +14,7 @@ const Tile = ({ original, current, name, diff, ...props }) => {
 				setThumb(original);
 			}}
 			onMouseLeave={() => {
-				setThumb(current);
+				setThumb(change);
 			}}
 		>
 			<div

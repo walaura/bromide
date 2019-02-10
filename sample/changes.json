@@ -1,27 +1,27 @@
 [
 	{
 		"srcset": {
-			"original": "../projects/differ/out/original/google.png",
-			"change": "../projects/differ/out/change/google.png",
-			"diff": "../projects/differ/out/diff/google.png"
+			"original": "../projects/bromide-differ/out/original/google.png",
+			"change": "../projects/bromide-differ/out/change/google.png",
+			"diff": "../projects/bromide-differ/out/diff/google.png"
 		},
 		"name": "google.png",
 		"diff": 0
 	},
 	{
 		"srcset": {
-			"original": "../projects/differ/out/original/login.png",
-			"change": "../projects/differ/out/change/login.png",
-			"diff": "../projects/differ/out/diff/login.png"
+			"original": "../projects/bromide-differ/out/original/login.png",
+			"change": "../projects/bromide-differ/out/change/login.png",
+			"diff": "../projects/bromide-differ/out/diff/login.png"
 		},
 		"name": "login.png",
 		"diff": 0.0004704793294270833
 	},
 	{
 		"srcset": {
-			"original": "../projects/differ/out/original/yahoo.png",
-			"change": "../projects/differ/out/change/yahoo.png",
-			"diff": "../projects/differ/out/diff/yahoo.png"
+			"original": "../projects/bromide-differ/out/original/yahoo.png",
+			"change": "../projects/bromide-differ/out/change/yahoo.png",
+			"diff": "../projects/bromide-differ/out/diff/yahoo.png"
 		},
 		"name": "yahoo.png",
 		"diff": 0.03879550456583552
