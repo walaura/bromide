@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import usePromise from 'react-use-promise';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
 import usePersistentState from 'hook/usePersistentState';
+import { getThresholds } from 'helper/changes';
 import HoverTabs from 'component/HoverTabs/HoverTabs';
 import ImageView from 'component/ImageView/ImageView';
 import Title from 'component/Title/Title';
-
+import Toggle from 'component/Toggle/Toggle';
 import { views } from 'helper/views';
+
 import styles from './Compare.module.css';
 
 export default ({ srcset, name, difference, ...props }) => {
@@ -15,6 +19,7 @@ export default ({ srcset, name, difference, ...props }) => {
 		Number(v)
 	);
 	const [hoverView, setHoverView] = useState(selectedView);
+	const [thresholds] = usePromise(useMemo(() => getThresholds(), []));
 	const [large, setLarge] = usePersistentState(
 		'lg',
 		false,
@@ -27,15 +32,15 @@ export default ({ srcset, name, difference, ...props }) => {
 		}
 	}, [difference]);
 
-	console.log(hoverView);
-
 	return (
 		<div className={styles.root} {...props}>
 			<div className={styles.header}>
 				<Title className={styles.title} {...{ name, difference }} />
 				<div>
-					{difference === 0 ? (
-						<span>This one looks the same!</span>
+					{difference === 0 && thresholds ? (
+						<span className={styles.same}>
+							This one {[...thresholds].pop().singular}!
+						</span>
 					) : (
 						<HoverTabs
 							tabs={views.map(({ name }) => name)}
@@ -48,17 +53,12 @@ export default ({ srcset, name, difference, ...props }) => {
 							}}
 						/>
 					)}
-					<HoverTabs
-						small
+					<Toggle
 						className={styles.scaler}
-						tabs={[
-							<FontAwesomeIcon icon={faCompress} />,
-							<FontAwesomeIcon icon={faExpand} />,
-						]}
-						activeTab={large ? 1 : 0}
-						onClick={tab => {
-							setLarge(tab === 1);
-						}}
+						state={large}
+						onClick={() => setLarge(l => !l)}
+						whenTrue={<FontAwesomeIcon icon={faExpand} />}
+						whenFalse={<FontAwesomeIcon icon={faCompress} />}
 					/>
 				</div>
 			</div>

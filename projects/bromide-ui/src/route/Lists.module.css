@@ -5,3 +5,8 @@
 .root > * + * {
 	margin-top: 4em;
 }
+
+.aside {
+	display: flex;
+	align-items: flex-end;
+}

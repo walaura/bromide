@@ -2,14 +2,14 @@
 
 View and compare differences between two sets of images in a generated static site. It'll group changes by how changed they are and allow you to quickly view each set individually, side by side, or as a diff map between both images.
 
-_This tool is meant to be used as part of a larger visual regression toolchain, so you'll still need something that actually takes screenshots & compares them._
+**This tool is meant to be used as part of a larger visual regression toolchain, so you'll still need something that actually takes screenshots & compares them.** Check out `bromide-differ` if you want a straightforward differ that generates the expected output right out of the box.
 
-<img alt="screenshot 2019-02-10 at 9 07 22 am" src="https://user-images.githubusercontent.com/11539094/52532007-0e107200-2d16-11e9-9096-b0b148b68ceb.png">
-<img alt="screenshot 2019-02-10 at 9 07 19 am" src="https://user-images.githubusercontent.com/11539094/52532009-1072cc00-2d16-11e9-8e6c-3f8ef794b2ad.png">
+<img width="1270" alt="screenshot 2019-02-10 at 2 54 34 pm" src="https://user-images.githubusercontent.com/11539094/52535274-17b0ce80-2d44-11e9-980a-80d688ee19d6.png">
+<img width="1270" alt="screenshot 2019-02-10 at 2 54 40 pm" src="https://user-images.githubusercontent.com/11539094/52535276-1bdcec00-2d44-11e9-97a3-ddfae1a2e519.png">
 
-## how to use
+## How to use
 
-Let's say you have this json, it's a list of image urls, a friendly name for each, and the difference between them. It looks like this:
+Let's say you have this json, it's a list of image urls (original, current, diff), a friendly name for each, and the difference between them as a %. It looks like this:
 
 ```json
 📄 /screenies.json
@@ -35,15 +35,13 @@ Let's say you have this json, it's a list of image urls, a friendly name for eac
 ]
 ```
 
-It's a simple pretty unopinionated data shape. Now, the same can't be said of all the possible ways to generate it, that's why `bromide` only concerns itself with letting you visualize the changes, while delagating the heavy lifting to any toolkit of your choice.
-
-In the same directory, you can run:
+Just run
 
 ```
 $ npx bromide --changes screenies.json --out site
 ```
 
-...and if it all worked out, you should have a static site in your `/site` folder where you can compare your set of differences neatly! You can see it locally by running `npx serve ./out`. The original images get downloaded alongside the site to make it fully self contained.
+...and if it all worked out, you should have a static site in your `/site` folder where you can compare your images neatly! You can see it locally by running `npx serve ./out`. The original images get downloaded alongside the site to make it self contained.
 
 There's not much use for this locally as you could just, like, open the files, but imagine if you then move that site to an S3 bucket and make it a post deploy hook. Magic!
 

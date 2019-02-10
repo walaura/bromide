@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { hsl, withLuminance } from 'helper/color';
+import { ViewOptionsContext } from 'context/viewOptions';
 
 import Tile from 'component/Tile/Tile';
 import useToggle from 'hook/useToggle';
@@ -9,6 +10,7 @@ import styles from './ChangeList.module.css';
 
 const ChangeList = ({ singular, plural, files, total, color }) => {
 	const [toggleState, toggle] = useToggle();
+	const { hasLargeImages } = useContext(ViewOptionsContext);
 	return (
 		<div>
 			<button
@@ -52,7 +54,7 @@ const ChangeList = ({ singular, plural, files, total, color }) => {
 						<Tile
 							key={index}
 							href={['#', 'image', index].join('/')}
-							{...{ name, difference, srcset }}
+							{...{ name, difference, srcset, hasLargeImages }}
 						/>
 					))}
 				</section>

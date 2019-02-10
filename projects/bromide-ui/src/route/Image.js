@@ -22,31 +22,35 @@ const Image = ({ id, setRoute }) => {
 		}
 	}, [id, image]);
 
-	return image ? (
-		<div
-			className={styles.root}
-			tabIndex="0"
-			ref={ref}
-			onKeyUp={({ key }) => {
-				if (!cursor) return;
-				if (key === 'ArrowLeft') {
-					setRoute(['image', cursor.prev]);
-				} else if (key === 'ArrowRight') {
-					setRoute(['image', cursor.next]);
-				}
-			}}
-		>
-			<Compare {...image} />
-		</div>
-	) : state !== 'resolved' ? (
-		<FullScreenIcon
-			appearance={'loading'}
-			icon={<FontAwesomeIcon icon={faDog} />}
-		/>
-	) : (
-		<FullScreenIcon icon={<FontAwesomeIcon icon={faSadCry} />}>
-			Not found
-		</FullScreenIcon>
+	return (
+		<main>
+			{image ? (
+				<div
+					className={styles.root}
+					tabIndex="0"
+					ref={ref}
+					onKeyUp={({ key }) => {
+						if (!cursor) return;
+						if (key === 'ArrowLeft') {
+							setRoute(['image', cursor.prev]);
+						} else if (key === 'ArrowRight') {
+							setRoute(['image', cursor.next]);
+						}
+					}}
+				>
+					<Compare {...image} />
+				</div>
+			) : state !== 'resolved' ? (
+				<FullScreenIcon
+					appearance={'loading'}
+					icon={<FontAwesomeIcon icon={faDog} />}
+				/>
+			) : (
+				<FullScreenIcon icon={<FontAwesomeIcon icon={faSadCry} />}>
+					Not found
+				</FullScreenIcon>
+			)}
+		</main>
 	);
 };
 

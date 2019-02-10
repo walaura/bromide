@@ -28,15 +28,6 @@
 	},
 	{
 		"srcset": {
-			"original": "../projects/bromide-differ/out/original/google.png",
-			"change": "../projects/bromide-differ/out/change/google.png",
-			"diff": "../projects/bromide-differ/out/diff/google.png"
-		},
-		"name": "google.png",
-		"difference": 1
-	},
-	{
-		"srcset": {
 			"original": "../projects/bromide-differ/out/original/login.png",
 			"change": "../projects/bromide-differ/out/change/login.png",
 			"diff": "../projects/bromide-differ/out/diff/login.png"

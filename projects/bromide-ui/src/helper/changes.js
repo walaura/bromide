@@ -22,7 +22,8 @@ const getThresholds = async () => {
 			},
 		];
 	}
-	return threshies;
+
+	return threshies.sort(({ from }, { from: secondFrom }) => from + secondFrom);
 };
 /*eslint-enable*/
 
@@ -69,4 +70,4 @@ const getChange = async id => {
 	return changes[id];
 };
 
-export { getChangeList, getColors, getChange, getNavigation };
+export { getChangeList, getColors, getChange, getThresholds, getNavigation };
